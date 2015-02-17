@@ -74,7 +74,7 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     //on key press fire off a function on the spark please. the data it sends back via http will fire off an event and call the function void ofApp::newResponse(ofxHttpResponse & response)
     
-    httpUtils.postData("https://api.spark.io/v1/devices/50ff6c065067545637110387/isPressed?access_token=3a17b73062e01cc52682cbf69a7941d17acb22&args=0", buff, "application/x-www-form-urlencoded");
+    httpUtils.postData("https://api.spark.io/v1/devices/50ff6c065067545637110387/isPressed?access_token=7c3a17b73062e01cc52682cbf69a7941d17acb22&args=0", buff, "application/x-www-form-urlencoded");
 }
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
