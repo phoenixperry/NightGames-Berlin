@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofxMaxim.h"
 #include "ofMain.h"
+
 class pitchEstimator : public ofBaseApp{
     
 public:
@@ -36,17 +37,24 @@ public:
     ofxMaxiOsc sine, sine1, sine2;
     
     int bin_number, bin_number1, bin_number2;
-    float largests[3];
+    float largests[3];  
     
     ofxMaxiFilter lowpass, highpass;
-    
     ofxMaxiFFT fft;
     ofxMaxiFFTOctaveAnalyzer octaveAnalyzer;
     ofxMaxiMix mix;
     
     float *inputL, *inputR;
     
-    float estimatedPitch[3];
+    float estimatedPitch[4];
+    
+    string getLoudestNote(){}
+    float getLoudestFrequency(){}
+   
+    
+    //call these variables to get the loudest note and freequency 
+    float loudestFrequency;
+    string loudestNote;
     
 };
 

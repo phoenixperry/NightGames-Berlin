@@ -8,15 +8,27 @@
 
 #ifndef __http_example__Clouds__
 #define __http_example__Clouds__
+#pragma once
 
 #include <stdio.h>
+#include "ofMain.h"
+#include "Spark_core_manager.h" 
+#include "PitchEstimator.h"
 //#include "aubioAnalyzer.h"
 class Clouds {
+
 public:
-    Clouds();
+    Clouds(Spark_core_manager *spark_, pitchEstimator *p_);
+    pitchEstimator *p;
+    Spark_core_manager *spark;
     
+    void newResponse(ofxHttpResponse & response);
 
-
+    void setup();
+    void update();
+    void draw();
+    void triggerLed(string color);
+   // void setupSpark(Spark_core_manager *spark_);
 
 };
 
