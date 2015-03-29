@@ -11,9 +11,10 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include <iostream>
 #pragma once
 #define NUM_BYTES 2
-
+using namespace std;
 class SerialReader{
 public:
     SerialReader();
@@ -22,5 +23,7 @@ public:
 
    ofSerial * serial;
     int sensorPadValue;
+    
+    
 };
 #endif /* defined(__http_example__SerialReader__) */

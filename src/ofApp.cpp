@@ -1,10 +1,6 @@
 #include "ofApp.h"
 #include "RtAudio.h"
 
-//needed for thread
-//
-ofBuffer buff;
-//ofBuffer *serialData;
 
 float startTime, currentTime;
 //--------------------------------------------------------------
@@ -18,43 +14,17 @@ void ofApp::setup(){
      p = new pitchEstimator();
      p->setup();
     clouds = new Clouds(spark_clouds, p);
-   //   port_reader.setup();
-//    startTime = ofGetElapsedTimef();
+
     bSendSerialMessage = false;
     serial = new SerialReader();
     serial->setup();
-    
-//    serial = new ofSerial();
-//    serial->listDevices();
-//    serial->setup(0, 9600);
-}
 
+}
 
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
-    //This gets sent to arduino, calling for a new set of readings
-//    serial->writeByte('a');
-//    
-//    if(serial->available()){
-//        
-//        unsigned char bytesReturned[6]; //000 new line + null terminator
-//        
-//        //  memset(bytesReadString, 0, 3);
-//        memset(bytesReturned, 0, sizeof(bytesReturned));
-//        
-//        // This reads the data now that arduino is sending a response,
-//        serial->readBytes(bytesReturned, 5);
-//        //check the data to make sure the new line isn't doing weird stuff
-//        
-//        string serialData = (char*) bytesReturned;
-//        sensorPadValue = ofToInt(serialData);
-//        //cout << sensorPadValue << endl;
-//        //This was allows for the whole process to repeat without
-//        // getting strange overlapping readings from the encoder:
-//        serial->flush();
-//    }
+
     p->update();
     clouds->update();
     serial->update();
@@ -71,9 +41,9 @@ void ofApp::keyPressed(int key){
 }
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    spark_clouds->spark_function_name ="set_color";
-    spark_clouds->spark_variable_name = "orange";
-    spark_clouds->sendPostData = true;
+//    spark_clouds->spark_function_name ="set_color";
+//    spark_clouds->spark_variable_name = "orange";
+//    spark_clouds->sendPostData = true;
 
 }
 

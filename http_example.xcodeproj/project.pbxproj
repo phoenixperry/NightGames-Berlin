@@ -24,6 +24,7 @@
 		D0B827921AB62E0A00FE66B9 /* maxiMFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0B827861AB62E0A00FE66B9 /* maxiMFCC.cpp */; };
 		D0B827931AB62E0A00FE66B9 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0B827881AB62E0A00FE66B9 /* maximilian.cpp */; };
 		D0B827941AB62E0A00FE66B9 /* stb_vorbis.c in Sources */ = {isa = PBXBuildFile; fileRef = D0B8278B1AB62E0A00FE66B9 /* stb_vorbis.c */; };
+		D0E2D4391AC8044F0086781B /* Rock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E2D4371AC8044F0086781B /* Rock.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -113,6 +114,8 @@
 		D0B8278A1AB62E0A00FE66B9 /* sineTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sineTable.h; sourceTree = "<group>"; };
 		D0B8278B1AB62E0A00FE66B9 /* stb_vorbis.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stb_vorbis.c; sourceTree = "<group>"; };
 		D0B8278C1AB62E0A00FE66B9 /* stb_vorbis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_vorbis.h; sourceTree = "<group>"; };
+		D0E2D4371AC8044F0086781B /* Rock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rock.cpp; sourceTree = "<group>"; };
+		D0E2D4381AC8044F0086781B /* Rock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rock.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -367,6 +370,8 @@
 				D082AA4A1AA75AC9008C914B /* Spark_core_manager.cpp */,
 				D082AA4B1AA75AC9008C914B /* Spark_core_manager.h */,
 				D048B3511AACDC6000651EA5 /* Clouds.cpp */,
+				D0E2D4371AC8044F0086781B /* Rock.cpp */,
+				D0E2D4381AC8044F0086781B /* Rock.h */,
 				D048B3521AACDC6000651EA5 /* Clouds.h */,
 				D063C6431AC45F9300DB5B05 /* SoundFileLoader.cpp */,
 				D063C6441AC45F9300DB5B05 /* SoundFileLoader.h */,
@@ -485,6 +490,7 @@
 				D0B827931AB62E0A00FE66B9 /* maximilian.cpp in Sources */,
 				D0B827771AB62DA500FE66B9 /* PitchEstimator.cpp in Sources */,
 				D0B827921AB62E0A00FE66B9 /* maxiMFCC.cpp in Sources */,
+				D0E2D4391AC8044F0086781B /* Rock.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				D0A10DA71AC1F95100C9697E /* SerialReader.cpp in Sources */,
 				D0AE313D1A9289E600BDAFED /* ofxHttpUtils.cpp in Sources */,
