@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		D048B3531AACDC6000651EA5 /* Clouds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048B3511AACDC6000651EA5 /* Clouds.cpp */; };
-		D063C6451AC45F9300DB5B05 /* SoundFileLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D063C6431AC45F9300DB5B05 /* SoundFileLoader.cpp */; };
 		D082AA4C1AA75AC9008C914B /* Spark_core_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D082AA4A1AA75AC9008C914B /* Spark_core_manager.cpp */; };
 		D09581CD1A92963800F77DD3 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09581C31A92963700F77DD3 /* ofxJSONElement.cpp */; };
 		D09581CE1A92963800F77DD3 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09581CC1A92963800F77DD3 /* jsoncpp.cpp */; };
@@ -79,8 +78,6 @@
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		D048B3511AACDC6000651EA5 /* Clouds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clouds.cpp; sourceTree = "<group>"; };
 		D048B3521AACDC6000651EA5 /* Clouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clouds.h; sourceTree = "<group>"; };
-		D063C6431AC45F9300DB5B05 /* SoundFileLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundFileLoader.cpp; sourceTree = "<group>"; };
-		D063C6441AC45F9300DB5B05 /* SoundFileLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundFileLoader.h; sourceTree = "<group>"; };
 		D082AA4A1AA75AC9008C914B /* Spark_core_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spark_core_manager.cpp; sourceTree = "<group>"; };
 		D082AA4B1AA75AC9008C914B /* Spark_core_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spark_core_manager.h; sourceTree = "<group>"; };
 		D09581C21A92963700F77DD3 /* ofxJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxJSON.h; sourceTree = "<group>"; };
@@ -373,8 +370,6 @@
 				D0E2D4371AC8044F0086781B /* Rock.cpp */,
 				D0E2D4381AC8044F0086781B /* Rock.h */,
 				D048B3521AACDC6000651EA5 /* Clouds.h */,
-				D063C6431AC45F9300DB5B05 /* SoundFileLoader.cpp */,
-				D063C6441AC45F9300DB5B05 /* SoundFileLoader.h */,
 				D0B827751AB62DA500FE66B9 /* PitchEstimator.cpp */,
 				D0B827761AB62DA500FE66B9 /* PitchEstimator.h */,
 				D0A10DA51AC1F95100C9697E /* SerialReader.cpp */,
@@ -483,7 +478,6 @@
 				D0B827901AB62E0A00FE66B9 /* maxiFFT.cpp in Sources */,
 				D09581CE1A92963800F77DD3 /* jsoncpp.cpp in Sources */,
 				D09581CD1A92963800F77DD3 /* ofxJSONElement.cpp in Sources */,
-				D063C6451AC45F9300DB5B05 /* SoundFileLoader.cpp in Sources */,
 				D0B8278D1AB62E0A00FE66B9 /* fft.cpp in Sources */,
 				D0B8278E1AB62E0A00FE66B9 /* maxiAtoms.cpp in Sources */,
 				D048B3531AACDC6000651EA5 /* Clouds.cpp in Sources */,
