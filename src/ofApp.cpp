@@ -24,8 +24,8 @@ void ofApp::draw(){
     clouds->draw();
 }
 void ofApp::keyReleased(int key){
-//    spark_clouds->spark_function_name ="set_color";
-//    spark_clouds->spark_variable_name = "orange";
-//    spark_clouds->sendPostData = true;
+    spark_clouds->spark_function_name ="set_color";
+    spark_clouds->spark_variable_name = "orange";
+    spark_clouds->sendPostData = true;
 
 }

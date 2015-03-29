@@ -37,9 +37,6 @@ void Spark_core_manager::setup_url_and_data(string device_id, string access_toke
     
     //start up http stuffs
     httpUtils.start();
-    //call update from within this thread to avoid choas.
-    
-    
 }
 void Spark_core_manager::threadedFunction()
 {
@@ -61,7 +58,7 @@ void Spark_core_manager::newResponse(ofxHttpResponse & response){
     //save out to this result which is kinda annoying. this is why I did the if statements to get the name
     
     //print raw json data so you can see all the data. see the ofxjson exampl for more info here.
-     cout << responseStr;
+     //cout << responseStr;
     bool parse =result.parse(response.responseBody);
     if(parse)
     {
@@ -70,16 +67,16 @@ void Spark_core_manager::newResponse(ofxHttpResponse & response){
  
         sensor_data = result["result"].asInt();
  
-        string device_name_ = result["name"].asString();
+        string var_name = result["name"].asString();
         
-        if(device_name =="spark_variable_name_"){
-            //this is sensor data
-            cout << sensor_data << " is sensor data" << endl;
+         if(device_name =="device_name"){
+             //this is the function trigger from of to spark core and the return value from sparkcore.
+             cout<< result["return_value"].asInt() << " is returned data" << endl;
         }
-        if(device_name_ ==device_name)
+        if( spark_variable_name ==var_name)
         {
-        //this is the function trigger from of to spark core and the return value from sparkcore.
-            cout<< result["return_value"].asInt() << " is returned data" << endl;
+            //this is sensor data
+            cout<< result["result"].asInt() << " is sensor data" << endl;
         }
     }else{
         cout << "json parse failure";
