@@ -1,9 +1,5 @@
 #include "ofApp.h"
-#include "RtAudio.h"
 
-
-float startTime, currentTime;
-//--------------------------------------------------------------
 void ofApp::setup(){
     spark_clouds = new Spark_core_manager();
     spark_rock = new Spark_core_manager();
@@ -14,71 +10,22 @@ void ofApp::setup(){
      p = new pitchEstimator();
      p->setup();
     clouds = new Clouds(spark_clouds, p);
-    
     serial = new SerialReader();
     serial->setup();
-
 }
-
-
-//--------------------------------------------------------------
 void ofApp::update(){
 
     p->update();
     clouds->update();
     serial->update();
 }
-//--------------------------------------------------------------
 void ofApp::draw(){
     p->draw();
     clouds->draw();
 }
-
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-  
-}
-//--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 //    spark_clouds->spark_function_name ="set_color";
 //    spark_clouds->spark_variable_name = "orange";
 //    spark_clouds->sendPostData = true;
 
 }
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
-}
-
-
