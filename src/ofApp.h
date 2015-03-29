@@ -35,7 +35,8 @@ class ofApp : public ofBaseApp{
     
     bool bSendSerialMessage;
     int countCycles;
-    ofSerial * serial;
+//    ofSerial * serial;
+    SerialReader * serial;
     
     
     int sensorPadValue;

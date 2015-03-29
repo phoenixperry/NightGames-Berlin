@@ -20,6 +20,7 @@ public:
     void setup();
     void update();
 
-
+   ofSerial * serial;
+    int sensorPadValue;
 };
 #endif /* defined(__http_example__SerialReader__) */
