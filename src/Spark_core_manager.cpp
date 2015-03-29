@@ -10,9 +10,6 @@
 
 
 Spark_core_manager::Spark_core_manager(){
-    //setup your URL - this is gonna change and see the spark sdk for this bit. Everyone's will be different
-    //and depending on your own device ID.
-    //set default Variable to pull
 
 }
 
@@ -84,9 +81,9 @@ void Spark_core_manager::newResponse(ofxHttpResponse & response){
 }
     void Spark_core_manager::postData(){
 
-//        //to send new data make sure to set the new args first before calling this function or the old data will be sent.
-//
-//        //  httpUtils.postData("https://api.spark.io/v1/devices/50ff6c065067545637110387/" +spark_function_name + "?access_token=c8c4c3aa486fa8e15d8d1edeeff64ec9d878052a&args="+args, mybuff, "application/x-www-form-urlencoded");
+        //to send new data make sure to set the new args first before calling this function or the old data will be sent.
+        //completed URL should look like this:
+        //httpUtils.postData("https://api.spark.io/v1/devices/50ff6c065067545637110387/" +spark_function_name + "?access_token=c8c4c3aa486fa8e15d8d1edeeff64ec9d878052a&args="+args, mybuff, "application/x-www-form-urlencoded");
         cout << spark_function_name <<  " called on spark" << endl;
         string args_ = "args="+args;
         string post_url_name = url_name1 + spark_function_name+url_name2;
