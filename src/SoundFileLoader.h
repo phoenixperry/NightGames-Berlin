@@ -13,7 +13,7 @@
 #include "ofxMaxim.h"
 class SoundFileLoader{
    // vector<
-    void setNumberOfFiles();
-   // void loadFiles
+    int num_of_files;
+    
 };
 #endif /* defined(__http_example__SoundFileLoader__) */

@@ -57,7 +57,7 @@ void ofApp::update(){
 //    }
     p->update();
     clouds->update();
-    serial->update(); 
+    serial->update();
 }
 //--------------------------------------------------------------
 void ofApp::draw(){

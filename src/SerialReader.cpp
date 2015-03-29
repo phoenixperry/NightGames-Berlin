@@ -32,6 +32,7 @@ void SerialReader::update(){
         
         string serialData = (char*) bytesReturned;
         sensorPadValue = ofToInt(serialData);
+        
         cout << sensorPadValue << endl;
         //This was allows for the whole process to repeat without
         // getting strange overlapping readings from the encoder:
