@@ -72,7 +72,7 @@ void Spark_core_manager::newResponse(ofxHttpResponse & response){
  
         string device_name_ = result["name"].asString();
         
-        if(device_name =="sensor_data"){
+        if(device_name =="spark_variable_name_"){
             //this is sensor data
             cout << sensor_data << " is sensor data" << endl;
         }

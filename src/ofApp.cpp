@@ -10,8 +10,11 @@ float startTime, currentTime;
 //--------------------------------------------------------------
 void ofApp::setup(){
     spark_clouds = new Spark_core_manager();
+    spark_rock = new Spark_core_manager();
     spark_clouds->startThread();
-    spark_clouds->setup_url_and_data("54ff6e066678574931580767", "c8c4c3aa486fa8e15d8d1edeeff64ec9d878052a", "rock", "val");
+    spark_rock->startThread();
+    spark_clouds->setup_url_and_data("50ff6c065067545637110387", "c8c4c3aa486fa8e15d8d1edeeff64ec9d878052a", "cloud", "test");
+    spark_rock->setup_url_and_data("54ff6e066678574931580767", "c8c4c3aa486fa8e15d8d1edeeff64ec9d878052a", "rock", "z_axis");
      p = new pitchEstimator();
      p->setup();
     clouds = new Clouds(spark_clouds, p);
@@ -45,7 +48,7 @@ void ofApp::update(){
         
         string serialData = (char*) bytesReturned;
         sensorPadValue = ofToInt(serialData);
-        cout << sensorPadValue << endl;
+        //cout << sensorPadValue << endl;
         //This was allows for the whole process to repeat without
         // getting strange overlapping readings from the encoder:
         serial->flush();

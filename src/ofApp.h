@@ -27,6 +27,7 @@ class ofApp : public ofBaseApp{
     Clouds *clouds;
     pitchEstimator *p;
     Spark_core_manager *spark_clouds;
+    Spark_core_manager *spark_rock;
     
     float 	* buffer;
 
@@ -35,6 +36,7 @@ class ofApp : public ofBaseApp{
     bool bSendSerialMessage;
     int countCycles;
     ofSerial * serial;
+    
     
     int sensorPadValue;
 

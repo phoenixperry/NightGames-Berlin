@@ -27,7 +27,7 @@ uint32_t col =255; //current color
 
 //start fade at 0%
 float pct = 0;
-
+int test = 0;
 //var for switching
 bool change = 0;
 
@@ -100,7 +100,7 @@ void setup()
 
     //ultimately I'll have an exposed function for each color to change the active color. right now only this one is stubbed in.
     Spark.function("set_color", set_color);
-    Spark.variable("test", &r, INT);
+    Spark.variable("test", &test, INT);
 
 
     //code required to start the strip up
