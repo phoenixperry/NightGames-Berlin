@@ -14,8 +14,7 @@ void ofApp::setup(){
      p = new pitchEstimator();
      p->setup();
     clouds = new Clouds(spark_clouds, p);
-
-    bSendSerialMessage = false;
+    
     serial = new SerialReader();
     serial->setup();
 

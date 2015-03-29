@@ -28,17 +28,6 @@ class ofApp : public ofBaseApp{
     pitchEstimator *p;
     Spark_core_manager *spark_clouds;
     Spark_core_manager *spark_rock;
-    
-    float 	* buffer;
-
-   // SerialReader port_reader;
-    
-    bool bSendSerialMessage;
-    int countCycles;
-//    ofSerial * serial;
     SerialReader * serial;
-    
-    
-    int sensorPadValue;
 
 };
