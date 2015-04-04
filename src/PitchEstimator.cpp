@@ -58,7 +58,7 @@ void pitchEstimator::setup(){
     fft.setup(16384, 1024, 512);
     octaveAnalyzer.setup(44100, 1024, 10);
     
-    soundStream.setup(this, 2, 2, 44100, initialBufferSize, 4);
+    soundStream.setup(this, 0, 2, 44100, initialBufferSize, 4);
     estimatedPitch[0] = estimatedPitch[1] = estimatedPitch[2] = 0.f;
     
 }
@@ -154,7 +154,7 @@ void pitchEstimator::audioIn  (float * input, int bufferSize, int nChannels){
     {
         if((estimatedPitch[0] >= notefreq[i]) && (estimatedPitch[0] <= notefreq[i+1]))
         {
-          //  cout << "note found " << note[i] << endl;
+            //cout << "note found " << note[i] << endl;
             loudestFrequency = notefreq[i];
             loudestNote = note[i];
         }

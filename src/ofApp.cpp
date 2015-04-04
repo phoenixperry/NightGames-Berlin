@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
+    //hardware setup
     spark_clouds = new Spark_core_manager();
     spark_rock = new Spark_core_manager();
     spark_clouds->startThread();
@@ -12,12 +13,17 @@ void ofApp::setup(){
     clouds = new Clouds(spark_clouds, p);
     serial = new SerialReader();
     serial->setup();
+    
+    cloud_sound_1.loadSound("sounds/clouds1.wav");
+    cloud_sound_1.setVolume(0.75f);
+    cloud_sound_1.setMultiPlay(true);
 }
 void ofApp::update(){
 
     p->update();
     clouds->update();
     serial->update();
+    ofSoundUpdate();
 }
 void ofApp::draw(){
     p->draw();
