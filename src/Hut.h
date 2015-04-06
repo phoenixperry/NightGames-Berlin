@@ -21,7 +21,7 @@ public:
 //    ofEvent <int> calibrated;
 //    ofEvent <int> startCalibration;
     //timer for calibration
-    float duration = 1000;
+    float duration = 2000;
     bool bullshitPress = false;
     bool welcomeMessage = true; 
     bool calibrate_state = true;
@@ -57,7 +57,7 @@ public:
     int world_record=0;
     int current_data=0;
     
-    void padCalibrated(int &e); 
-   
+    void setHigh();
+    void setLow();
 };
 #endif /* defined(__http_example__Hut__) */
