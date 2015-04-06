@@ -53,7 +53,7 @@ public:
     float currentTime, startTime;
     float duration = 10;
     bool fade = false;
-    
+
     
 };
 

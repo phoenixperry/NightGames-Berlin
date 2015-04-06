@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CC6243E1AD0769600123588 /* Hut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6243C1AD0769600123588 /* Hut.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		D048B3531AACDC6000651EA5 /* Clouds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048B3511AACDC6000651EA5 /* Clouds.cpp */; };
 		D082AA4C1AA75AC9008C914B /* Spark_core_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D082AA4A1AA75AC9008C914B /* Spark_core_manager.cpp */; };
@@ -101,6 +102,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8CC6243C1AD0769600123588 /* Hut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hut.cpp; sourceTree = "<group>"; };
+		8CC6243D1AD0769600123588 /* Hut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hut.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		D048B3511AACDC6000651EA5 /* Clouds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clouds.cpp; sourceTree = "<group>"; };
 		D048B3521AACDC6000651EA5 /* Clouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clouds.h; sourceTree = "<group>"; };
@@ -530,6 +533,8 @@
 				D0B827761AB62DA500FE66B9 /* PitchEstimator.h */,
 				D0A10DA51AC1F95100C9697E /* SerialReader.cpp */,
 				D0A10DA61AC1F95100C9697E /* SerialReader.h */,
+				8CC6243C1AD0769600123588 /* Hut.cpp */,
+				8CC6243D1AD0769600123588 /* Hut.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -647,6 +652,7 @@
 				D0E642BB1AC9D49100797DB1 /* CAAUParameter.cpp in Sources */,
 				D0B8278E1AB62E0A00FE66B9 /* maxiAtoms.cpp in Sources */,
 				D048B3531AACDC6000651EA5 /* Clouds.cpp in Sources */,
+				8CC6243E1AD0769600123588 /* Hut.cpp in Sources */,
 				D0E642C41AC9D49100797DB1 /* ofxAudioUnitMatrixMixer.cpp in Sources */,
 				D0B827931AB62E0A00FE66B9 /* maximilian.cpp in Sources */,
 				D0E642BA1AC9D49100797DB1 /* AUParamInfo.cpp in Sources */,

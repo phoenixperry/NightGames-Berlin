@@ -14,6 +14,7 @@
 #include <iostream>
 #pragma once
 #define NUM_BYTES 2
+#define NUM_PADS 11
 using namespace std;
 class SerialReader{
 public:
@@ -23,7 +24,9 @@ public:
 
    ofSerial * serial;
     int sensorPadValue;
+    string serialData;
     
+    int pads[NUM_PADS];
     
 };
 #endif /* defined(__http_example__SerialReader__) */

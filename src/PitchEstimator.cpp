@@ -73,9 +73,9 @@ void pitchEstimator::draw(){
     
     ofSetColor(255, 255, 255, 255);
     int i;
-    for(i = 0; i < octaveAnalyzer.nAverages; i++) {
-        ofRect(i * 11, ofGetHeight()/2 - (octaveAnalyzer.averages[i] * 4), 11, octaveAnalyzer.averages[i] * 8);
-    }
+//    for(i = 0; i < octaveAnalyzer.nAverages; i++) {
+//        ofRect(i * 11, ofGetHeight()/2 - (octaveAnalyzer.averages[i] * 4), 11, octaveAnalyzer.averages[i] * 8);
+//    }
     
 }
 

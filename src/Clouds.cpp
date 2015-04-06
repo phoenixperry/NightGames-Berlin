@@ -39,8 +39,8 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
     tap4.connectTo(mixer, 3);
     tap5.connectTo(mixer, 4);
     
-    mixer.connectTo(output);
-    output.start();
+  //  mixer.connectTo(output);
+  //  output.start();
     
     ofSetVerticalSync(true);
 
@@ -49,8 +49,8 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
     clouds3.loop();
     clouds4.loop();
     clouds5.loop();
-    mixer.setInputVolume(.5,2);
-    output.start();
+ //   mixer.setInputVolume(.5,2);
+
     delay.showUI();
     startTime = ofGetElapsedTimeMillis();
     
