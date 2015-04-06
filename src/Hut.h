@@ -15,7 +15,7 @@
 #include "ofMain.h"
 #include <stdlib.h>
 
-#define NUM_SENSORS 6
+#define NUM_SENSORS 7
 class Hut{
 public:
 //    ofEvent <int> calibrated;
@@ -40,24 +40,17 @@ public:
     vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
 
-
-    char currentPress;
     float currentTime, endTime;
   
-    int calibrateNum =0;
     Hut();
     void calibrate();
     void keyReleased(ofKeyEventArgs &key);
     void update();
     void draw();
     char subState = 'A';
-    
- 
-    char keyPress=' ';
-    int world_record=0;
-    int current_data=0;
-    
-    void setHigh();
-    void setLow();
+    int value =0;
+    void init();
+    int current = -1;
+    char keyPress = ' ';
 };
 #endif /* defined(__http_example__Hut__) */

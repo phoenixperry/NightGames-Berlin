@@ -18,7 +18,7 @@ class ofApp : public ofBaseApp{
     pitchEstimator *p;
     Spark_core_manager *spark_clouds;
     Spark_core_manager *spark_rock;
-    SerialReader * serial;
+    //SerialReader * serial;
     
     //sounds
     ofSoundPlayer cloud_sound_1;
