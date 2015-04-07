@@ -40,19 +40,31 @@ void SerialReader::update(){
           //  cout << pad << " " << data << endl;
     
       
-            if(pad == "00"){pad[0]=num;}
-            else if(pad=="01"){ pad[1] = num;}
-            else if(pad=="02"){ pad[2] = num;}
-            else if(pad=="03"){ pad[3] = num;}
-            else if(pad=="04"){ pad[4] = num;}
-            else if(pad=="05"){ pad[5] = num;}
-            else if(pad=="06"){ pad[6] = num;}
-            else if(pad=="07"){ pad[7] = num;}
-            else if(pad=="08"){ pad[8] = num;}
-            else if(pad=="09"){ pad[9] = num;}
-            else if(pad=="10"){ pad[10] = num;}
-            else{pad[11] = num;}
+//            if(pad == "00"){pad[0]=num;}
+//            else if(pad=="01"){ pad[1] = num;}
+//            else if(pad=="02"){ pad[2] = num;}
+//            else if(pad=="03"){ pad[3] = num;}
+//            else if(pad=="04"){ pad[4] = num;}
+//            else if(pad=="05"){ pad[5] = num;}
+//            else if(pad=="06"){ pad[6] = num;}
+//            else if(pad=="07"){ pad[7] = num;}
+//            else if(pad=="08"){ pad[8] = num;}
+//            else if(pad=="09"){ pad[9] = num;}
+//            else if(pad=="10"){ pad[10] = num;}
+//            else{pad[11] = num;}
           //  cout << pad0 << " from serial"<< endl;
+            if(pad == "00"){pad0=num;}
+            else if(pad=="01"){ pad1= num;}
+            else if(pad=="02"){ pad2 = num;}
+            else if(pad=="03"){ pad3 = num;}
+            else if(pad=="04"){ pad4 = num;}
+            else if(pad=="05"){ pad5 = num;}
+            else if(pad=="06"){ pad6 = num;}
+            else if(pad=="07"){ pad7 = num;}
+            else if(pad=="08"){ pad8 = num;}
+            else if(pad=="09"){ pad9 = num;}
+            else if(pad=="10"){ pad10 = num;}
+            else{pad11 = num;}
             
         }else{ cout << "failed to get serial data" << endl;}
         //cout << pad << " pad "<< num << " data "<<endl;

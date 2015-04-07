@@ -13,29 +13,28 @@
 Hut::Hut(){
     serial_reader = new SerialReader();
     serial_reader->setup();
-    init();
-}
-void Hut::init (){
-    
-    //give these values a default that's not 0.
     for(int i=0; i <= NUM_SENSORS; i++)
     {
-        padsLow[i] = serial_reader->pads[i];
-        padsHigh[i] = serial_reader->pads[i];
+        padsLow[i] = 1000;
+        padsHigh[i] = 0;
     }
 }
+
 void Hut::update(){
     serial_reader->update();
     
     ///just for testing change these before shipping code
-    pads[0] = serial_reader->pads[1];
-    pads[1] =serial_reader->pads[4];
-    pads[2] = serial_reader->pads[5];
-    pads[3] = serial_reader->pads[7];
-    pads[4] = serial_reader->pads[8];
-    pads[5] = serial_reader->pads[3];
-    pads[6] = serial_reader->pads[10];
-    cout << pads [0];
+    if(serial_reader->serial->available())
+    {
+        pads[0] = &serial_reader->pad1;
+        pads[1] = &serial_reader->pad3;
+        pads[2] = &serial_reader->pad4;
+        pads[3] = &serial_reader->pad5;
+        pads[4] = &serial_reader->pad7;
+        pads[5] = &serial_reader->pad8;
+        pads[6] = &serial_reader->pad10;
+    }
+       // cout << pads [0];
 }
 void Hut::draw(){
     currentTime = ofGetElapsedTimeMillis();
@@ -43,14 +42,14 @@ void Hut::draw(){
     if(current ==-1){
             ofDrawBitmapString("Hello Adelle! :) Welcome to calibration mode for the hut.\nThis isn't super tested code.\nI suggest not mulitasking or pressing any keys that are not asked for.\n\nThere is a variable called duration. You can change that to change the number of seconds \nyou calibrate for to make this easier. \n\nTo start, press 0 to calibrate the 0 pad.", 100,100);
             }
-    
+    if(serial_reader->serial->available()){
     if(current > -1)
     {
         if(currentTime < endTime){
-            value = pads[current];
+            value = *pads[current];
             if( value < padsLow[current]){
                 padsLow[current] = value;
-                cout << value;
+               // cout << value;
             }
             if(value > padsHigh[current]){
                 padsHigh[current] = value;
@@ -72,19 +71,10 @@ void Hut::draw(){
             }
         }
     }
-    
-}
-
-void Hut::calibrate(){
-        ofSetColor(255,255,0);
-    if(bullshitPress){
-        ofSetColor(200, 20, 255);
-        ofDrawBitmapString("not a valid key. please follow the guide ok? Hit any pad to resume calibration at that location", 100, 300);
-        ofSetColor(200, 200,0);
     }
-    
-
 }
+
+
 
 void Hut::keyReleased(ofKeyEventArgs &key){
     keyPress = (char)key.keycode;

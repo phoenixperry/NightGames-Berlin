@@ -22,20 +22,14 @@ public:
 //    ofEvent <int> startCalibration;
     //timer for calibration
     float duration = 2000;
-    bool bullshitPress = false;
-    bool welcomeMessage = true; 
-    bool calibrate_state = true;
-    bool run_state=false;
     SerialReader *serial_reader;
     
     
     int padsLow[NUM_SENSORS];
     int padsHigh[NUM_SENSORS];
-    int pads[NUM_SENSORS];
-    bool calibrate_pad[NUM_SENSORS];
+    int *pads[NUM_SENSORS];
     
     ofxAudioUnitMixer mix;
-    void startCalibrationProcess(int &e);
     vector<ofxAudioUnit> filters;
     vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
@@ -43,14 +37,13 @@ public:
     float currentTime, endTime;
   
     Hut();
-    void calibrate();
     void keyReleased(ofKeyEventArgs &key);
     void update();
     void draw();
-    char subState = 'A';
+ 
     int value =0;
-    void init();
+ 
     int current = -1;
-    char keyPress = ' ';
+    char keyPress =' ';
 };
 #endif /* defined(__http_example__Hut__) */
