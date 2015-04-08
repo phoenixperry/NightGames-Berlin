@@ -8,7 +8,6 @@
 
 #include "Hut.h"
 #include "vector.h"
-//just to initialize the array before we use it should serial fail out
 
 Hut::Hut(){
     filters.resize(NUM_SENSORS);
@@ -42,7 +41,6 @@ Hut::Hut(){
     output.start();
     
     ofSetVerticalSync(true);
-    //clips.at(0).showUI();
 }
 
 void Hut::update(){
@@ -68,7 +66,7 @@ void Hut::draw(){
    // cout<< serial_reader->pad1 << "raw data" <<endl;
     if(calibrateMode){
         if(current ==-1){
-                    ofDrawBitmapString("Hello Adelle! :) Welcome to calibration mode for the hut.\nWARNING: This isn't super safe code.\nI suggest not mulitasking or pressing any keys that are not asked for.\nWARNING: Hitting the same key more than once will break this\nThere is a variable called duration. You can change that to change the number of seconds \nyou calibrate for to make this easier. \n\nTo start, press 0 to calibrate the 0 pad. Watch the console for further instructions!!\n Sorry time and all... feel free to add some code here to print to screen\n", 100,100);
+                    ofDrawBitmapString("Hello Adelle! (=^･ｪ･^=)\nWelcome to calibration mode for the hut.\nYou can change the number of seconds you calibrate for with the duration variable.\n\nTo start, press 0 to calibrate the 0 pad.\n\nWatch the console for further instructions!!\n", 100,100);
             }
         
             //if(serial_reader->serial->available()){
@@ -117,7 +115,7 @@ void Hut::draw(){
     
     if(!calibrateMode){
         for (int i =0 ; i <NUM_SENSORS; i++) {
-            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 2,true);
+            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 0.5,true);
             AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
                                                             kAudioUnitScope_Global,
                                                             0,
@@ -126,13 +124,6 @@ void Hut::draw(){
 
         }
     }
-//    AudioUnitSetParameter(varispeed,
-//                          kVarispeedParam_PlaybackRate,
-//                          kAudioUnitScope_Global,
-//                          0,
-//                          newSpeed,
-//                          0);
-    //}
 }
 
 
