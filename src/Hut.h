@@ -11,10 +11,10 @@
 #pragma once
 #include <stdio.h>
 #include "SerialReader.h"
-#include "ofxAudioUnit.h"
+//#include "ofxAudioUnit.h"
 #include "ofMain.h"
 #include <stdlib.h>
-
+#include "ofxAudioUnit.h"
 #define NUM_SENSORS 7
 class Hut{
 public:
@@ -39,7 +39,7 @@ public:
     //ofxAudioUnit lowpass;
  //   ofxAudioUnitFilePlayer filePlayer;
     ofxAudioUnitOutput output;
-    //ofxAudioUnitTap tap;
+    ofxAudioUnitTap tap;
     
     
     float currentTime, endTime;

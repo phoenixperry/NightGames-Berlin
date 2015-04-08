@@ -28,20 +28,14 @@ Hut::Hut(){
     //audio setup
 
     for (int i=0; i<NUM_SENSORS; i++) {
-        ofxAudioUnitTap tap;
-        ofxAudioUnit varispeed;
-        varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
-        filters[i] = varispeed;
-        taps[i] = tap;
+        filters[i].setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
     }
     
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitFilePlayer filePlayer;
-        filePlayer.setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
-        filePlayer.loop();
-        filePlayer.connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
-        clips[i] = filePlayer;
-        
+        clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
+        clips[i].loop();
+        clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
     }
     mixer.connectTo(output);
     mixer.setInputVolume(0.5, 2);
@@ -121,23 +115,23 @@ void Hut::draw(){
     
     //add game code here!
     
-    if(!calibrateMode){
-        for (int i =0 ; i <NUM_SENSORS; i++) {
-            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 2,true);
-            AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
-                                                            kAudioUnitScope_Global,
-                                                            0,
-                                                            newSpeed,
-                                                            0);
-
-        }
+//    if(!calibrateMode){
+//        for (int i =0 ; i <NUM_SENSORS; i++) {
+//            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 2,true);
+//            AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
+//                                                            kAudioUnitScope_Global,
+//                                                            0,
+//                                                            newSpeed,
+//                                                            0);
+//
+//        }
 //    AudioUnitSetParameter(varispeed,
 //                          kVarispeedParam_PlaybackRate,
 //                          kAudioUnitScope_Global,
 //                          0,
 //                          newSpeed,
 //                          0);
-    }
+    //}
 }
 
 
