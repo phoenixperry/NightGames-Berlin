@@ -20,35 +20,31 @@ Hut::Hut(){
         padsHigh.push_back(0);
         pads->push_back(500);
     }
-
+    mixer.setInputBusCount(NUM_SENSORS);
     //audio setup
-    varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
-    lowpass.setup(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
-    
-    filePlayer.connectTo(varispeed).connectTo(lowpass).connectTo(tap).connectTo(output);
-    lowpass.printParameterList();
-    
-    output.start();
+
+    for (int i=0; i<NUM_SENSORS; i++) {
+        ofxAudioUnitTap tap;
+        ofxAudioUnit varispeed;
+        varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
+        filters.push_back(varispeed);
+        taps.push_back(tap);
+    }
     
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitFilePlayer filePlayer;
-        filePlayer.setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i)+".aif"));
+        filePlayer.setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
         filePlayer.loop();
+        filePlayer.connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
         clips.push_back(filePlayer);
-    }
-    for (int i=0; i<NUM_SENSORS; i++) {
         
     }
-    for (int i=0; i<NUM_SENSORS; i++) {
-        ofxAudioUnitTap tap
-    }
-   // filePlayer.setFile(ofFilePath::getAbsolutePath("sound/hut1.aif"));
-   // filePlayer.loop();
+    mixer.connectTo(output);
+    mixer.setInputVolume(0.5, 2);
+    output.start();
     
     ofSetVerticalSync(true);
-    
-    
-    clips.at(0).showUI();
+    //clips.at(0).showUI();
 }
 
 void Hut::update(){
@@ -122,15 +118,21 @@ void Hut::draw(){
     //add game code here!
     
     if(!calibrateMode){
-        float newSpeed = ofMap(pads->at(0), padsLow.at(0), padsHigh.at(0), 0.01, 2,true);
-        cout << pads->at(0) << "data" <<endl;
-        
-    AudioUnitSetParameter(varispeed,
-                          kVarispeedParam_PlaybackRate,
-                          kAudioUnitScope_Global,
-                          0,
-                          newSpeed,
-                          0);
+        for (int i =0 ; i <NUM_SENSORS; i++) {
+            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 2,true);
+            AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
+                                                            kAudioUnitScope_Global,
+                                                            0,
+                                                            newSpeed,
+                                                            0);
+
+        }
+//    AudioUnitSetParameter(varispeed,
+//                          kVarispeedParam_PlaybackRate,
+//                          kAudioUnitScope_Global,
+//                          0,
+//                          newSpeed,
+//                          0);
     }
 }
 
