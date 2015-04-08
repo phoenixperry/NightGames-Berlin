@@ -115,16 +115,17 @@ void Hut::draw(){
     
     //add game code here!
     
-//    if(!calibrateMode){
-//        for (int i =0 ; i <NUM_SENSORS; i++) {
-//            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 2,true);
-//            AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
-//                                                            kAudioUnitScope_Global,
-//                                                            0,
-//                                                            newSpeed,
-//                                                            0);
-//
-//        }
+    if(!calibrateMode){
+        for (int i =0 ; i <NUM_SENSORS; i++) {
+            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 2,true);
+            AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
+                                                            kAudioUnitScope_Global,
+                                                            0,
+                                                            newSpeed,
+                                                            0);
+
+        }
+    }
 //    AudioUnitSetParameter(varispeed,
 //                          kVarispeedParam_PlaybackRate,
 //                          kAudioUnitScope_Global,
