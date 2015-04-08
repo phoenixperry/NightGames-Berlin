@@ -39,13 +39,6 @@
 #include <SdFatUtil.h> 
 #include <SFEMP3Shield.h>
 
-#include "utility/twi.h"
-#include "Wire.h"
-#include "SPI.h"
-
-
-
-
 // mp3 variables
 SFEMP3Shield MP3player;
 byte result;
@@ -81,12 +74,13 @@ void setup(){
   // this is the touch threshold - setting it low makes it more like a proximity trigger
   // default value is 40 for touch
   MPR121.setTouchThreshold(8);
+
   
   // this is the release threshold - must ALWAYS be smaller than the touch threshold
   // default value is 20 for touch
   MPR121.setReleaseThreshold(4);  
 
-  result = MP3player.begin();
+  result = MP3player.begin(); 
   MP3player.setVolume(10,10);
  
   if(result != 0) {
@@ -99,8 +93,26 @@ void setup(){
 
 void loop(){
   readTouchInputs();
-
-  Serial.println("made it");
+  for(int i=0; i<12; i++){
+    MPR121.updateFilteredData(); 
+    int d = MPR121.getFilteredData(i);
+    MPR121.updateBaselineData(); 
+    int c = MPR121.getBaselineData(i);
+    if (Serial.available() > 0) {  
+    // get incoming byte:
+      if(i < 10){
+        Serial.print(0);
+        Serial.print(i);
+        Serial.print(":");
+        Serial.println(d);
+      }else {
+        Serial.print(i);
+        Serial.print(":");
+        Serial.println(d);
+      }
+    Serial.flush();  
+  }
+  }  
 }
 
 
@@ -121,7 +133,7 @@ void readTouchInputs(){
             Serial.print(i);
             Serial.println(" was just touched");
             digitalWrite(LED_BUILTIN, HIGH);
-             spar
+            
             if(i<=lastPin && i>=firstPin){
               if(MP3player.isPlaying()){
                 if(lastPlayed==i){
@@ -162,3 +174,10 @@ void readTouchInputs(){
     }
   }
 }
+
+
+
+
+
+
+
