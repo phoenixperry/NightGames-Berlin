@@ -25,9 +25,9 @@ public:
     SerialReader *serial_reader;
     
     bool calibrateMode = true; 
-    int padsLow[NUM_SENSORS];
-    int padsHigh[NUM_SENSORS];
-    int *pads[NUM_SENSORS];
+    vector<int> padsLow;
+    vector<int>padsHigh;
+    vector<int>* pads;
     
     ofxAudioUnitMixer mix;
     vector<ofxAudioUnit> filters;

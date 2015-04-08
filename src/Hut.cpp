@@ -7,19 +7,18 @@
 //
 
 #include "Hut.h"
-
+#include "vector.h"
 //just to initialize the array before we use it should serial fail out
-int numnum =0;
-int *nums = &numnum;
 
 Hut::Hut(){
+    pads = new vector<int>();
     serial_reader = new SerialReader();
     serial_reader->setup();
     for(int i=0; i <= NUM_SENSORS; i++)
     {
-        padsLow[i] = 1000;
-        padsHigh[i] = 0;
-        pads[i] = nums;
+        padsLow.push_back(1000);
+        padsHigh.push_back(0);
+        pads->push_back(500);
     }
 }
 
@@ -29,13 +28,13 @@ void Hut::update(){
     ///just for testing change these before shipping code
     if(serial_reader->serial->available())
     {
-        pads[0] = &serial_reader->pad1;
-        pads[1] = &serial_reader->pad3;
-        pads[2] = &serial_reader->pad4;
-        pads[3] = &serial_reader->pad5;
-        pads[4] = &serial_reader->pad7;
-        pads[5] = &serial_reader->pad8;
-        pads[6] = &serial_reader->pad10;
+        pads->at(0)= serial_reader->pad1;
+        pads->at(1) = serial_reader->pad3;
+        pads->at(2) = serial_reader->pad4;
+        pads->at(3) = serial_reader->pad5;
+        pads->at(4) = serial_reader->pad7;
+        pads->at(5) = serial_reader->pad8;
+        pads->at(6) = serial_reader->pad10;
     }
        // cout << pads [0];
 }
@@ -49,13 +48,13 @@ void Hut::draw(){
             if(current > -1)
             {
                 if(currentTime < endTime){
-                    value = *pads[current];
-                    if( value < padsLow[current]){
+                    value = pads->at(current);
+                    if( value < padsLow.at(current)){
                         padsLow[current] = value;
                        // cout << value;
                     }
-                    if(value > padsHigh[current]){
-                        padsHigh[current] = value;
+                    if(value > padsHigh.at(current)){
+                        padsHigh.at(current) = value;
                     }
                 }
                 if(currentTime > endTime)
