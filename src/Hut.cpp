@@ -11,6 +11,10 @@
 //just to initialize the array before we use it should serial fail out
 
 Hut::Hut(){
+    filters.resize(NUM_SENSORS);
+    taps.resize(NUM_SENSORS);
+    clips.resize(NUM_SENSORS);
+    
     pads = new vector<int>(NUM_SENSORS);
     serial_reader = new SerialReader();
     serial_reader->setup();
@@ -27,8 +31,8 @@ Hut::Hut(){
         ofxAudioUnitTap tap;
         ofxAudioUnit varispeed;
         varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
-        filters.push_back(varispeed);
-        taps.push_back(tap);
+        filters[i] = varispeed;
+        taps[i] = tap;
     }
     
     for (int i=0; i<NUM_SENSORS; i++) {
@@ -36,7 +40,7 @@ Hut::Hut(){
         filePlayer.setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
         filePlayer.loop();
         filePlayer.connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
-        clips.push_back(filePlayer);
+        clips[i] = filePlayer;
         
     }
     mixer.connectTo(output);
