@@ -21,19 +21,27 @@ public:
 //    ofEvent <int> calibrated;
 //    ofEvent <int> startCalibration;
     //timer for calibration
-    float duration = 2000;
+    float duration = 8000;
     SerialReader *serial_reader;
     
     bool calibrateMode = true; 
     vector<int> padsLow;
     vector<int>padsHigh;
     vector<int>* pads;
-    
+    bool calibrating = false;
     ofxAudioUnitMixer mix;
-    vector<ofxAudioUnit> filters;
-    vector<ofxAudioUnitTap>taps;
+//    vector<ofxAudioUnit> filters;
+//    vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
-
+    
+    
+    ofxAudioUnit varispeed;
+    ofxAudioUnit lowpass;
+ //   ofxAudioUnitFilePlayer filePlayer;
+    ofxAudioUnitOutput output;
+    //ofxAudioUnitTap tap;
+    
+    
     float currentTime, endTime;
   
     Hut();
