@@ -29,17 +29,17 @@ public:
     vector<int>padsHigh;
     vector<int>* pads;
     bool calibrating = false;
-   // ofxAudioUnitMixer mixer;
+    ofxAudioUnitMixer mixer;
     vector<ofxAudioUnit> filters;
-   // vector<ofxAudioUnitTap>taps;
+    vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
 
   //  ofxAudioUnitOutput output;
     float currentTime, endTime;
     Hut();
     ~Hut();
-    vector<ofxAudioUnit>& getUnits();
-    vector<ofxAudioUnit>* units;
+    //vector<ofxAudioUnit>& getUnits();
+    //vector<ofxAudioUnit>* units;
     
     void keyReleased(ofKeyEventArgs &key);
     void update();
