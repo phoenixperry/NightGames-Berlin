@@ -23,5 +23,6 @@ class ofApp : public ofBaseApp{
     //sounds
     ofSoundPlayer cloud_sound_1;
     Hut *hut;
+    vector<ofxAudioUnit> *hutFilters;
     
 };

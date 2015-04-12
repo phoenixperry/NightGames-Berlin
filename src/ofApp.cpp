@@ -17,6 +17,7 @@ void ofApp::setup(){
   //  cloud_sound_1.setMultiPlay(true);
     hut = new Hut();
     ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
+    hutFilters = &hut->getUnits();
 }
 void ofApp::update(){
     hut->update();

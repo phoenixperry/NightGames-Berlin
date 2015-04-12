@@ -12,7 +12,7 @@
 
 Hut::Hut(){
     filters.resize(NUM_SENSORS);
-    taps.resize(NUM_SENSORS);
+//    taps.resize(NUM_SENSORS);
     clips.resize(NUM_SENSORS);
     
     pads = new vector<int>(NUM_SENSORS);
@@ -24,28 +24,29 @@ Hut::Hut(){
         padsHigh.push_back(0);
         pads->push_back(500);
     }
-    mixer.setInputBusCount(NUM_SENSORS);
+  //  mixer.setInputBusCount(NUM_SENSORS);
     //audio setup
 
     for (int i=0; i<NUM_SENSORS; i++) {
-        ofxAudioUnitTap tap;
+       // ofxAudioUnitTap tap;
         ofxAudioUnit varispeed;
         varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
         filters[i] = varispeed;
-        taps[i] = tap;
+      //  taps[i] = tap;
     }
     
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitFilePlayer filePlayer;
         filePlayer.setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
         filePlayer.loop();
-        filePlayer.connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
+       // filePlayer.connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
+        filePlayer.connectTo(filters.at(i));
         clips[i] = filePlayer;
         
     }
-    mixer.connectTo(output);
-    mixer.setInputVolume(0.5, 2);
-    output.start();
+//    mixer.connectTo(output);
+//    mixer.setInputVolume(0.5, 2);
+//    output.start();
     
     ofSetVerticalSync(true);
     //clips.at(0).showUI();
@@ -169,4 +170,15 @@ void Hut::keyReleased(ofKeyEventArgs &key){
         calibrateMode = false;
         cout << "bye!!! Game starting now."<< endl;
     }
+}
+vector<ofxAudioUnit>& Hut::getUnits(){
+    units = &filters;
+    return *units;
+}
+Hut::~Hut()
+{
+    delete pads;
+    delete serial_reader;
+    pads = 0;
+    serial_reader =0;
 }
