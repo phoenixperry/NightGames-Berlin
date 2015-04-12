@@ -1,5 +1,5 @@
 // This #include statement was automatically added by the Spark IDE.
-#include "neopixel/neopixel.h"
+#include "neopixel.h"
 
 #define PIXEL_PIN D0
 #define PIXEL_COUNT 4
