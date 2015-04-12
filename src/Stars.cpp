@@ -11,18 +11,31 @@ Stars::Stars(){
     filters.resize(NUM_LIGHT_SENSORS);
     taps.resize(NUM_LIGHT_SENSORS);
     clips.resize(NUM_LIGHT_SENSORS);
-
+    mixer.setInputBusCount(NUM_LIGHT_SENSORS/2);
+    
+    for (int i=0; i<NUM_LIGHT_SENSORS/2; i++) {
+        ofxAudioUnitTap tap;
+        ofxAudioUnit varispeed;
+        varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
+        filters[i] = varispeed;
+        taps[i] = tap;
+    }
+    
+    
     for(int i = 0; i < NUM_LIGHT_SENSORS/2; i++)
     {
-        filters[i].setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
         
         ofxAudioUnitFilePlayer filePlayer;
-        clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
+        clips[i].setFile(ofFilePath::getAbsolutePath("sound/stars"+ofToString(i+1)+".aif"));
         clips[i].loop();
-        // clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
-        clips[i].connectTo(filters.at(i)).connectTo(taps.at(i));
+        clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer,i);
+  
     }
         ofSetVerticalSync(true);
+    mixer.connectTo(output);
+    mixer.setInputVolume(1.0f, 2);
+    mixer.setOutputVolume(1.0f);
+    output.start(); 
 }
 
 

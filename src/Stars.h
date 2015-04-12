@@ -20,8 +20,10 @@ public:
     vector<ofxAudioUnit> filters;
     vector<ofxAudioUnitTap> taps;
     vector<ofxAudioUnitFilePlayer> clips;
+
+    ofxAudioUnitMixer mixer;
+    ofxAudioUnitOutput output; 
     
-   
   //  Stars(Spark_core_manager *spark);
     Stars(); 
     void newResponse(ofxHttpResponse & response);

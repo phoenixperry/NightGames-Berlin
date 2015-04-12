@@ -37,7 +37,7 @@ class ofApp : public ofBaseApp{
     
     Hut *hut;
     Rock *rock;
-   // Stars *stars;
+    Stars *stars;
     
 
   //  ofxAudioUnitOutput output;
