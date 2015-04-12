@@ -28,7 +28,7 @@ class ofApp : public ofBaseApp{
     
     vector<ofxAudioUnit> taps;
     
-    ofxAudioUnitOutput output;
-    ofxAudioUnitMixer mixer;
+  //  ofxAudioUnitOutput output;
+  //  ofxAudioUnitMixer mixer;
     
 };

@@ -116,11 +116,11 @@ void Hut::draw(){
     if(!calibrateMode){
         for (int i =0 ; i <NUM_SENSORS; i++) {
             float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 0.5,true);
-            AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
-                                                            kAudioUnitScope_Global,
-                                                            0,
-                                                            newSpeed,
-                                                            0);
+//            AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
+//                                                            kAudioUnitScope_Global,
+//                                                            0,
+//                                                            newSpeed,
+//                                                            0);
 
         }
     }

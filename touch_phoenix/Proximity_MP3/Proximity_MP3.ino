@@ -119,36 +119,32 @@ void loop(){
     MPR121.updateFilteredData(); 
     int d = MPR121.getFilteredData(i);
     ///change this number as needed to get the on state for proxmimity  
-    if(d < 500 && on) 
-    {
-      analogWrite(i, 255); 
-      on = true; 
-      Serial.println("trigger happening");   
-    } 
-   else{
-     analogWrite(i, 0); 
-     on = false; 
-     delay(1000); 
-   } 
+//    if(d < 500 && on) 
+//    {
+//      analogWrite(i, 255); 
+//      on = true; 
+//      Serial.println("trigger happening");   
+//    } 
+//   else{
+//     analogWrite(i, 0); 
+//     on = false; 
+//     delay(1000); 
+//   } 
    
 //    MPR121.updateBaselineData(); 
 //    int c = MPR121.getBaselineData(i);
     if (Serial.available() > 0) {  
-       int num = digitalRead(i); 
-       Serial.print(num);
-       Serial.print(" :"); 
-       Serial.println(i); 
       // get incoming byte:
-//      if(i < 10){
-//        Serial.print(0);
-//        Serial.print(i);
-//        Serial.print(":");
-//        Serial.println(d);
-//      }else {
-//        Serial.print(i);
-//        Serial.print(":");
-//        Serial.println(d);
-//      }
+      if(i < 10){
+        Serial.print(0);
+        Serial.print(i);
+        Serial.print(":");
+        Serial.println(d);
+      }else {
+        Serial.print(i);
+        Serial.print(":");
+        Serial.println(d);
+      }
     Serial.flush();  
     }
   }  
@@ -176,13 +172,13 @@ void readTouchInputs(){
             Serial.print("pin ");
             Serial.print(i);
             Serial.println(" was just touched");
-            digitalWrite(leds[i], HIGH); 
+           // digitalWrite(leds[i], HIGH); 
         }else{
           if(MPR121.isNewRelease(i)){
             Serial.print("pin ");
             Serial.print(i);
             Serial.println(" is no longer being touched");
-            digitalWrite(LED_BUILTIN, LOW);
+          //  digitalWrite(LED_BUILTIN, LOW);
          } 
         }
       }
