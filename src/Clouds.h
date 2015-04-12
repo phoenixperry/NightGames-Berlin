@@ -31,6 +31,7 @@ public:
     void update();
     void draw();
     void triggerLed(string color);
+   // ~Clouds();
    // void setupSpark(Spark_core_manager *spark_);
     
     //effects
@@ -54,7 +55,7 @@ public:
     float duration = 10;
     bool fade = false;
 
-    
+   
 };
 
 #endif /* defined(__http_example__Clouds__) */

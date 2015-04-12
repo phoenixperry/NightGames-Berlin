@@ -29,29 +29,32 @@ public:
     vector<int>padsHigh;
     vector<int>* pads;
     bool calibrating = false;
-    ofxAudioUnitMixer mixer;
+ //   ofxAudioUnitMixer mixer;
     vector<ofxAudioUnit> filters;
     vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
+    int value =0;
     
+    int current = -1;
+    char keyPress =' ';
+    
+    float currentTime, endTime;
     
     //ofxAudioUnit varispeed;
     //ofxAudioUnit lowpass;
  //   ofxAudioUnitFilePlayer filePlayer;
-    ofxAudioUnitOutput output;
-    ofxAudioUnitTap tap;
-    
-    
-    float currentTime, endTime;
-  
-    Hut();
+ //   ofxAudioUnitOutput output;
+
+
     void keyReleased(ofKeyEventArgs &key);
     void update();
     void draw();
- 
-    int value =0;
- 
-    int current = -1;
-    char keyPress =' ';
+    int &getNumSensors();
+      vector<ofxAudioUnitTap>& getTaps();
+    
+    Hut();
+    ~Hut();
+
+
 };
 #endif /* defined(__http_example__Hut__) */

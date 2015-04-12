@@ -47,20 +47,35 @@ int lastPlayed = 0;
 // touch behaviour definitions
 #define firstPin 0
 #define lastPin 11
-
+#define NUM_LEDS 7 
 // sd card instantiation
 SdFat sd;
 
 // define LED_BUILTIN for older versions of Arduino
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 13
+
 #endif
 
+
+
+int leds[] = {3,5,6,9,10,11,13}; // these are the pads you can use for digital output  
+
+int startTime =0; 
+int durration = 3000;  
+bool on = false; 
+
 void setup(){  
+  startTime = millis();
   Serial.begin(57600);
   
   pinMode(LED_BUILTIN, OUTPUT);
-   
+  for(int i =0; i <NUM_LEDS; i++) 
+ {
+  // pinMode(i, OUTPUT); //set up pints 
+ } 
+
+
   //while (!Serial) ; {} //uncomment when using the serial monitor 
   Serial.println("Bare Conductive Proximity MP3 player");
 
@@ -88,35 +103,64 @@ void setup(){
     Serial.print(result);
     Serial.println(" when trying to start MP3 player");
    }
-   
-}
 
+}
 void loop(){
-  readTouchInputs();
+
+  if(millis() > startTime + durration && on)
+  {
+
+    startTime = millis(); 
+    on = false; 
+
+  }
+ // readTouchInputs();
   for(int i=0; i<12; i++){
     MPR121.updateFilteredData(); 
     int d = MPR121.getFilteredData(i);
-    MPR121.updateBaselineData(); 
-    int c = MPR121.getBaselineData(i);
+    ///change this number as needed to get the on state for proxmimity  
+    if(d < 500 && on) 
+    {
+      analogWrite(i, 255); 
+      on = true; 
+      Serial.println("trigger happening");   
+    } 
+   else{
+     analogWrite(i, 0); 
+     on = false; 
+     delay(1000); 
+   } 
+   
+//    MPR121.updateBaselineData(); 
+//    int c = MPR121.getBaselineData(i);
     if (Serial.available() > 0) {  
-    // get incoming byte:
-      if(i < 10){
-        Serial.print(0);
-        Serial.print(i);
-        Serial.print(":");
-        Serial.println(d);
-      }else {
-        Serial.print(i);
-        Serial.print(":");
-        Serial.println(d);
-      }
+       int num = digitalRead(i); 
+       Serial.print(num);
+       Serial.print(" :"); 
+       Serial.println(i); 
+      // get incoming byte:
+//      if(i < 10){
+//        Serial.print(0);
+//        Serial.print(i);
+//        Serial.print(":");
+//        Serial.println(d);
+//      }else {
+//        Serial.print(i);
+//        Serial.print(":");
+//        Serial.println(d);
+//      }
     Serial.flush();  
-  }
+    }
   }  
 }
 
 
 void readTouchInputs(){
+//    for(int i=0; i<12; i++){
+//      MPR121.updateFilteredData(); 
+//      int d = MPR121.getFilteredData(i);
+//      Serial.print("d 
+//  }
   if(MPR121.touchStatusChanged()){
     
     MPR121.updateTouchData();
@@ -132,36 +176,7 @@ void readTouchInputs(){
             Serial.print("pin ");
             Serial.print(i);
             Serial.println(" was just touched");
-            digitalWrite(LED_BUILTIN, HIGH);
-            
-            if(i<=lastPin && i>=firstPin){
-              if(MP3player.isPlaying()){
-                if(lastPlayed==i){
-                  // if we're already playing the requested track, stop it
-                  MP3player.stopTrack();
-                  Serial.print("stopping track ");
-                  Serial.println(i-firstPin);
-                } else {
-                  // if we're already playing a different track, stop that 
-                  // one and play the newly requested one
-                  MP3player.stopTrack();
-                  MP3player.playTrack(i-firstPin);
-                  Serial.print("playing track ");
-                  Serial.println(i-firstPin);
-                  
-                  // don't forget to update lastPlayed - without it we don't
-                  // have a history
-                  lastPlayed = i;
-                }
-              } else {
-                // if we're playing nothing, play the requested track 
-                // and update lastplayed
-                MP3player.playTrack(i-firstPin);
-                Serial.print("playing track ");
-                Serial.println(i-firstPin);
-                lastPlayed = i;
-              }
-            }     
+            digitalWrite(leds[i], HIGH); 
         }else{
           if(MPR121.isNewRelease(i)){
             Serial.print("pin ");
@@ -174,6 +189,12 @@ void readTouchInputs(){
     }
   }
 }
+
+
+
+
+
+
 
 
 

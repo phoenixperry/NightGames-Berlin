@@ -6,6 +6,7 @@
 #include "SerialReader.h"
 #include <vector>
 #include "Hut.h"
+#include "Stars.h"
 using namespace std;
 class ofApp : public ofBaseApp{
   	public:
@@ -21,7 +22,13 @@ class ofApp : public ofBaseApp{
     //SerialReader * serial;
     
     //sounds
-    ofSoundPlayer cloud_sound_1;
+   // ofSoundPlayer cloud_sound_1;
     Hut *hut;
+    Stars *stars;
+    
+    vector<ofxAudioUnit> taps;
+    
+    ofxAudioUnitOutput output;
+    ofxAudioUnitMixer mixer;
     
 };

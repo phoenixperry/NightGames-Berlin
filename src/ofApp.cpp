@@ -10,13 +10,19 @@ void ofApp::setup(){
     //spark_rock->setup_url_and_data("54ff6e066678574931580767", "12d6475ce64882db47631f249deb47d795186ea9", "rock", "z_axis");
      p = new pitchEstimator();
      p->setup();
-    clouds = new Clouds(spark_clouds, p);
+   //  clouds = new Clouds(spark_clouds, p);
 
   //  cloud_sound_1.loadSound("sounds/clouds1.wav");
   //  cloud_sound_1.setVolume(0.75f);
   //  cloud_sound_1.setMultiPlay(true);
     hut = new Hut();
-    ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
+    stars = new Stars();
+
+
+   // taps.resize(11);
+//    
+//    ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
+    
 }
 void ofApp::update(){
     hut->update();

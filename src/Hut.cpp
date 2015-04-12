@@ -23,7 +23,7 @@ Hut::Hut(){
         padsHigh.push_back(0);
         pads->push_back(500);
     }
-    mixer.setInputBusCount(NUM_SENSORS);
+//    mixer.setInputBusCount(NUM_SENSORS);
     //audio setup
 
     for (int i=0; i<NUM_SENSORS; i++) {
@@ -34,11 +34,13 @@ Hut::Hut(){
         ofxAudioUnitFilePlayer filePlayer;
         clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
         clips[i].loop();
-        clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
+       // clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
+         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i));
     }
-    mixer.connectTo(output);
-    mixer.setInputVolume(0.5, 2);
-    output.start();
+//    mixer.connectTo(output);
+//    mixer.setInputVolume(0.5, 2);
+//    mixer.setOutputVolume(0.0f);
+//    output.start();
     
     ofSetVerticalSync(true);
 }
@@ -69,8 +71,6 @@ void Hut::draw(){
                     ofDrawBitmapString("Hello Adelle! (=^･ｪ･^=)\nWelcome to calibration mode for the hut.\nYou can change the number of seconds you calibrate for with the duration variable.\n\nTo start, press 0 to calibrate the 0 pad.\n\nWatch the console for further instructions!!\n", 100,100);
             }
         
-            //if(serial_reader->serial->available()){
-              //ß®  cout<< ofGetFrameRate()<<endl;
             if(current > -1)
             {
                 
@@ -109,7 +109,7 @@ void Hut::draw(){
                 }
             }
         }
-    //}//end calibration mode
+    //end calibration mode
     
     //add game code here!
     
@@ -155,4 +155,19 @@ void Hut::keyReleased(ofKeyEventArgs &key){
         calibrateMode = false;
         cout << "bye!!! Game starting now."<< endl;
     }
+}
+
+vector<ofxAudioUnitTap>& Hut::getTaps(){
+    
+    return taps;
+}
+
+
+
+
+
+Hut::~Hut()
+{
+    delete pads;
+    delete serial_reader;
 }
