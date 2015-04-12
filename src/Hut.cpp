@@ -34,8 +34,8 @@ Hut::Hut(){
         ofxAudioUnitFilePlayer filePlayer;
         clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
         clips[i].loop();
-       // clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
-         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i));
+        clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
+        // clips[i].connectTo(filters.at(i)).connectTo(taps.at(i));
     }
 //    mixer.connectTo(output);
 //    mixer.setInputVolume(0.5, 2);
@@ -156,13 +156,13 @@ void Hut::keyReleased(ofKeyEventArgs &key){
         cout << "bye!!! Game starting now."<< endl;
     }
 }
-
-vector<ofxAudioUnitTap>& Hut::getTaps(){
-    
-    return taps;
-}
-
-
+//
+//vector<ofxAudioUnitTap>& Hut::getTaps(){
+//    
+//    return taps;
+//}
+//
+//
 
 
 

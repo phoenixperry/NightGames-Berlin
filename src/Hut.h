@@ -29,7 +29,7 @@ public:
     vector<int>padsHigh;
     vector<int>* pads;
     bool calibrating = false;
- //   ofxAudioUnitMixer mixer;
+    ofxAudioUnitMixer mixer;
     vector<ofxAudioUnit> filters;
     vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
@@ -43,14 +43,14 @@ public:
     //ofxAudioUnit varispeed;
     //ofxAudioUnit lowpass;
  //   ofxAudioUnitFilePlayer filePlayer;
- //   ofxAudioUnitOutput output;
+    ofxAudioUnitOutput output;
 
 
     void keyReleased(ofKeyEventArgs &key);
     void update();
     void draw();
-    int &getNumSensors();
-      vector<ofxAudioUnitTap>& getTaps();
+   // int &getNumSensors();
+   //   vector<ofxAudioUnitTap>& getTaps();
     
     Hut();
     ~Hut();

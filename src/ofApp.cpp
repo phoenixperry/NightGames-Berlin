@@ -19,9 +19,8 @@ void ofApp::setup(){
    // stars = new Stars();
 
 
-   // taps.resize(11);
-//    
-//    ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
+   // taps.resize(11);   
+    ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
     
 }
 void ofApp::update(){

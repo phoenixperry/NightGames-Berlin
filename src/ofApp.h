@@ -21,13 +21,10 @@ class ofApp : public ofBaseApp{
     Spark_core_manager *spark_rock;
     //SerialReader * serial;
     
-    //sounds
-   // ofSoundPlayer cloud_sound_1;
     Hut *hut;
-    Stars *stars;
+   // Stars *stars;
     
-    vector<ofxAudioUnit> taps;
-    
+
   //  ofxAudioUnitOutput output;
   //  ofxAudioUnitMixer mixer;
     
