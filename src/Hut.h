@@ -11,17 +11,17 @@
 #pragma once
 #include <stdio.h>
 #include "SerialReader.h"
-#include "ofxAudioUnit.h"
+//#include "ofxAudioUnit.h"
 #include "ofMain.h"
 #include <stdlib.h>
-
+#include "ofxAudioUnit.h"
 #define NUM_SENSORS 7
 class Hut{
 public:
 //    ofEvent <int> calibrated;
 //    ofEvent <int> startCalibration;
     //timer for calibration
-    float duration = 8000;
+    float duration = 3000;
     SerialReader *serial_reader;
     
     bool calibrateMode = true; 
@@ -29,18 +29,17 @@ public:
     vector<int>padsHigh;
     vector<int>* pads;
     bool calibrating = false;
-   // ofxAudioUnitMixer mixer;
+    ofxAudioUnitMixer mixer;
     vector<ofxAudioUnit> filters;
-   // vector<ofxAudioUnitTap>taps;
+    vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
-
-  //  ofxAudioUnitOutput output;
+    ofxAudioUnitOutput output;
     float currentTime, endTime;
     Hut();
     ~Hut();
-    vector<ofxAudioUnit>& getUnits();
-    vector<ofxAudioUnit>* units;
-    
+//    vector<ofxAudioUnit>& getUnits();
+//    vector<ofxAudioUnit>* units;
+//    
     void keyReleased(ofKeyEventArgs &key);
     void update();
     void draw();
@@ -49,6 +48,10 @@ public:
  
     int current = -1;
     char keyPress =' ';
+
     
+
+   // int &getNumSensors();
+   //   vector<ofxAudioUnitTap>& getTaps();
 };
 #endif /* defined(__http_example__Hut__) */

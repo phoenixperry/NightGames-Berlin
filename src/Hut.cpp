@@ -8,11 +8,10 @@
 
 #include "Hut.h"
 #include "vector.h"
-//just to initialize the array before we use it should serial fail out
 
 Hut::Hut(){
     filters.resize(NUM_SENSORS);
-//    taps.resize(NUM_SENSORS);
+    taps.resize(NUM_SENSORS);
     clips.resize(NUM_SENSORS);
     
     pads = new vector<int>(NUM_SENSORS);
@@ -24,32 +23,32 @@ Hut::Hut(){
         padsHigh.push_back(0);
         pads->push_back(500);
     }
-  //  mixer.setInputBusCount(NUM_SENSORS);
+
+    mixer.setInputBusCount(NUM_SENSORS);
     //audio setup
 
     for (int i=0; i<NUM_SENSORS; i++) {
-       // ofxAudioUnitTap tap;
+        ofxAudioUnitTap tap;
         ofxAudioUnit varispeed;
         varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
         filters[i] = varispeed;
-      //  taps[i] = tap;
+        taps[i] = tap;
     }
     
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitFilePlayer filePlayer;
-        filePlayer.setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
-        filePlayer.loop();
-       // filePlayer.connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
-        filePlayer.connectTo(filters.at(i));
-        clips[i] = filePlayer;
-        
+
+        clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
+        clips[i].loop();
+        clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
+        // clips[i].connectTo(filters.at(i)).connectTo(taps.at(i));
     }
-//    mixer.connectTo(output);
-//    mixer.setInputVolume(0.5, 2);
-//    output.start();
+    mixer.connectTo(output);
+    mixer.setInputVolume(0.5, 2);
+    mixer.setOutputVolume(0.5f);
+    output.start();
     
     ofSetVerticalSync(true);
-    //clips.at(0).showUI();
 }
 
 void Hut::update(){
@@ -75,11 +74,9 @@ void Hut::draw(){
    // cout<< serial_reader->pad1 << "raw data" <<endl;
     if(calibrateMode){
         if(current ==-1){
-                    ofDrawBitmapString("Hello Adelle! :) Welcome to calibration mode for the hut.\nWARNING: This isn't super safe code.\nI suggest not mulitasking or pressing any keys that are not asked for.\nWARNING: Hitting the same key more than once will break this\nThere is a variable called duration. You can change that to change the number of seconds \nyou calibrate for to make this easier. \n\nTo start, press 0 to calibrate the 0 pad. Watch the console for further instructions!!\n Sorry time and all... feel free to add some code here to print to screen\n", 100,100);
+                    ofDrawBitmapString("Hello Adelle! (=^･ｪ･^=)\nWelcome to calibration mode for the hut.\nYou can change the number of seconds you calibrate for with the duration variable.\n\nTo start, press 0 to calibrate the 0 pad.\n\nWatch the console for further instructions!!\n", 100,100);
             }
         
-            //if(serial_reader->serial->available()){
-              //ß®  cout<< ofGetFrameRate()<<endl;
             if(current > -1)
             {
                 
@@ -118,13 +115,13 @@ void Hut::draw(){
                 }
             }
         }
-    //}//end calibration mode
+    //end calibration mode
     
     //add game code here!
     
     if(!calibrateMode){
         for (int i =0 ; i <NUM_SENSORS; i++) {
-            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 2,true);
+            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 0.5,true);
             AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
                                                             kAudioUnitScope_Global,
                                                             0,
@@ -132,12 +129,6 @@ void Hut::draw(){
                                                             0);
 
         }
-//    AudioUnitSetParameter(varispeed,
-//                          kVarispeedParam_PlaybackRate,
-//                          kAudioUnitScope_Global,
-//                          0,
-//                          newSpeed,
-//                          0);
     }
 }
 
@@ -171,14 +162,24 @@ void Hut::keyReleased(ofKeyEventArgs &key){
         cout << "bye!!! Game starting now."<< endl;
     }
 }
-vector<ofxAudioUnit>& Hut::getUnits(){
-    units = &filters;
-    return *units;
-}
+
+//
+//vector<ofxAudioUnitTap>& Hut::getTaps(){
+//    
+//    return taps;
+//}
+//
+//
+
+
+
+
 Hut::~Hut()
 {
     delete pads;
     delete serial_reader;
+
     pads = 0;
     serial_reader =0;
+
 }

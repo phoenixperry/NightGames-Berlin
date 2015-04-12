@@ -6,6 +6,7 @@
 #include "SerialReader.h"
 #include <vector>
 #include "Hut.h"
+#include "Stars.h"
 using namespace std;
 //AudioStreamBasicDescription ASBD = {
 //    .mSampleRate       = 44100,
@@ -33,10 +34,12 @@ class ofApp : public ofBaseApp{
     Spark_core_manager *spark_rock;
     //SerialReader * serial;
     
-    //sounds
-    ofSoundPlayer cloud_sound_1;
     Hut *hut;
-    vector<ofxAudioUnit> *hutFilters;
-    ofxAudioUnitOutput output;
-  //  ofxAudioUnitMixer  mixer;
+
+   // Stars *stars;
+    
+
+  //  ofxAudioUnitOutput output;
+  //  ofxAudioUnitMixer mixer;
+
 };
