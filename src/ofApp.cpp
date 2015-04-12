@@ -18,6 +18,20 @@ void ofApp::setup(){
     hut = new Hut();
     ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
     hutFilters = &hut->getUnits();
+  //  output.setDevice("Komplete Audio 6");
+    
+
+//    OFXAU_PRINT(AudioUnitSetProperty(output,
+//                                     kAudioUnitProperty_StreamFormat,
+//                                     kAudioUnitScope_Input,
+//                                     0,
+//                                     &ASBD,
+//                                     sizeof(ASBD)),
+//                "setting output unit's input ASBD");
+    
+    // setting mixer to have 960 input busses, 1 output bus and use the
+    // 16 channel stream format on its output bus
+//    mixer.setChannelLayout(NUMBER_OF_FILE_PLAYERS, 1, NULL, &ASBD);
 }
 void ofApp::update(){
     hut->update();

@@ -7,6 +7,19 @@
 #include <vector>
 #include "Hut.h"
 using namespace std;
+//AudioStreamBasicDescription ASBD = {
+//    .mSampleRate       = 44100,
+//    .mFormatID         = kAudioFormatLinearPCM,
+//    .mFormatFlags      = kAudioFormatFlagsAudioUnitCanonical,
+//    
+//    .mChannelsPerFrame = 4, // <- change this to 24 in your case
+//    .mFramesPerPacket  = 1,
+//    
+//    .mBitsPerChannel   = sizeof(AudioUnitSampleType) * 8,
+//    .mBytesPerPacket   = sizeof(AudioUnitSampleType),
+//    .mBytesPerFrame    = sizeof(AudioUnitSampleType)
+//};
+
 class ofApp : public ofBaseApp{
   	public:
 		void setup();
@@ -24,5 +37,6 @@ class ofApp : public ofBaseApp{
     ofSoundPlayer cloud_sound_1;
     Hut *hut;
     vector<ofxAudioUnit> *hutFilters;
-    
+    ofxAudioUnitOutput output;
+  //  ofxAudioUnitMixer  mixer;
 };
