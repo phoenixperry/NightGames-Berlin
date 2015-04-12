@@ -76,6 +76,7 @@ void pitchEstimator::draw(){
 //    for(i = 0; i < octaveAnalyzer.nAverages; i++) {
 //        ofRect(i * 11, ofGetHeight()/2 - (octaveAnalyzer.averages[i] * 4), 11, octaveAnalyzer.averages[i] * 8);
 //    }
+   
     
 }
 
@@ -154,7 +155,7 @@ void pitchEstimator::audioIn  (float * input, int bufferSize, int nChannels){
     {
         if((estimatedPitch[0] >= notefreq[i]) && (estimatedPitch[0] <= notefreq[i+1]))
         {
-            //cout << "note found " << note[i] << endl;
+            cout << "note found " << note[i] << endl;
             loudestFrequency = notefreq[i];
             loudestNote = note[i];
         }

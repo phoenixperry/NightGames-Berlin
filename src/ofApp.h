@@ -9,18 +9,6 @@
 #include "Stars.h"
 #include "Rock.h"
 using namespace std;
-//AudioStreamBasicDescription ASBD = {
-//    .mSampleRate       = 44100,
-//    .mFormatID         = kAudioFormatLinearPCM,
-//    .mFormatFlags      = kAudioFormatFlagsAudioUnitCanonical,
-//    
-//    .mChannelsPerFrame = 4, // <- change this to 24 in your case
-//    .mFramesPerPacket  = 1,
-//    
-//    .mBitsPerChannel   = sizeof(AudioUnitSampleType) * 8,
-//    .mBytesPerPacket   = sizeof(AudioUnitSampleType),
-//    .mBytesPerFrame    = sizeof(AudioUnitSampleType)
-//};
 
 class ofApp : public ofBaseApp{
   	public:
@@ -38,9 +26,5 @@ class ofApp : public ofBaseApp{
     Hut *hut;
     Rock *rock;
     Stars *stars;
-    
-
-  //  ofxAudioUnitOutput output;
-  //  ofxAudioUnitMixer mixer;
 
 };

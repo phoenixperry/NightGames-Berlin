@@ -7,7 +7,8 @@
 //
 
 #include "Stars.h"
-Stars::Stars(){
+Stars::Stars(Spark_core_manager *spark_){
+    spark = spark_; 
     filters.resize(NUM_LIGHT_SENSORS);
     taps.resize(NUM_LIGHT_SENSORS);
     clips.resize(NUM_LIGHT_SENSORS);
