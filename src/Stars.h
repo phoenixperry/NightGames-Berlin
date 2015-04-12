@@ -29,8 +29,8 @@ public:
     void update();
     void draw();
     
-    vector<ofxAudioUnitTap>& getTaps();
-    int &getNumSensors();
+//    vector<ofxAudioUnitTap>& getTaps();
+    
     ~Stars();
 //    void mouseDragged(ofKeyEventArgs )
 };

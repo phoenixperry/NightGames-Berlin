@@ -7,6 +7,7 @@
 #include <vector>
 #include "Hut.h"
 #include "Stars.h"
+#include "Rock.h"
 using namespace std;
 //AudioStreamBasicDescription ASBD = {
 //    .mSampleRate       = 44100,
@@ -35,7 +36,7 @@ class ofApp : public ofBaseApp{
     //SerialReader * serial;
     
     Hut *hut;
-
+    Rock *rock;
    // Stars *stars;
     
 

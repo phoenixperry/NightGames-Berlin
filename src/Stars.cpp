@@ -26,10 +26,10 @@ Stars::Stars(){
 }
 
 
-vector<ofxAudioUnitTap>& Stars::getTaps(){
-    
-    return taps;
-}
+//vector<ofxAudioUnitTap>& Stars::getTaps(){
+//    
+//    return taps;
+//}
 Stars::~Stars(){
 
 }

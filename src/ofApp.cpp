@@ -16,6 +16,7 @@ void ofApp::setup(){
   //  cloud_sound_1.setVolume(0.75f);
   //  cloud_sound_1.setMultiPlay(true);
     hut = new Hut();
+    rock = new Rock(); 
    // stars = new Stars();
 
 

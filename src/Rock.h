@@ -13,12 +13,19 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "Spark_core_manager.h"
+#include "ofxAudioUnit.h"
 class Rock{
 public:
+//    
+//    Rock(Spark_core_manager *spark_);
+//    Spark_core_manager *spark;
+    Rock();
+    ofxAudioUnit filter;
+    ofxAudioUnitTap tap;
+    ofxAudioUnitOutput output;
+    ofxAudioUnitMixer mix;
+    ofxAudioUnitFilePlayer clip; 
     
-    Rock(Spark_core_manager *spark_); 
-    
-    Spark_core_manager *spark;
 };
 
 #endif /* defined(__http_example__Rock__) */

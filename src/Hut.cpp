@@ -45,7 +45,7 @@ Hut::Hut(){
     }
     mixer.connectTo(output);
     mixer.setInputVolume(0.5, 2);
-    mixer.setOutputVolume(0.5f);
+    mixer.setOutputVolume(0.1f);
     output.start();
     
     ofSetVerticalSync(true);
