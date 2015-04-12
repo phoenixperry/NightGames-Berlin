@@ -37,10 +37,10 @@ Hut::Hut(){
         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
         // clips[i].connectTo(filters.at(i)).connectTo(taps.at(i));
     }
-//    mixer.connectTo(output);
-//    mixer.setInputVolume(0.5, 2);
-//    mixer.setOutputVolume(0.0f);
-//    output.start();
+    mixer.connectTo(output);
+    mixer.setInputVolume(0.5, 2);
+    mixer.setOutputVolume(0.5f);
+    output.start();
     
     ofSetVerticalSync(true);
 }
