@@ -42,13 +42,9 @@ Stars::Stars(Spark_core_manager *spark_){
 }
 
 
-//vector<ofxAudioUnitTap>& Stars::getTaps(){
-//    
-//    return taps;
-//}
+
 void Stars::update(){
     string data = spark->sensor_data;
-    //cout << data<< endl;
     vector<int> vect;
     stringstream ss(data);
     int i;
@@ -64,7 +60,8 @@ void Stars::update(){
     count = 0;
     for(int i=0; i<sensors.size(); i++)
     {
-        //cout << sensors[i] << "sensor " << i << endl;
+      //  cout << sensors[i] << "light sensor data source " << i << endl;
+      //this comment will print out the sensor data coming in from the sparkcore.
     }
     
     float star_one_average = sensors[0] + sensors[1]/2;

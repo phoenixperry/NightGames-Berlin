@@ -21,7 +21,7 @@ class ofApp : public ofBaseApp{
     pitchEstimator *p;
     Spark_core_manager *spark_clouds;
     Spark_core_manager *spark_rock;
-    //SerialReader * serial;
+
     
     Hut *hut;
     Rock *rock;

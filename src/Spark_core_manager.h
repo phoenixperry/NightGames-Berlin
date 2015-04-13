@@ -22,7 +22,7 @@ public:
     string device_name;
     //name spark saves your device as
     
-    string sensor_data;
+    string sensor_data = " ";
     //used for incoming sensor data in the get request
     
     string responseStr;
@@ -43,6 +43,7 @@ public:
     
     bool sendPostData= false;
     //switch for the update loop to send data to spark
+    
     bool hasInited = false;
     //is object is set up for get requests
 
@@ -57,7 +58,9 @@ public:
     void postData();
     void threadedFunction();
     void quit();
+    //handles int data from spark
     void newResponse(ofxHttpResponse & response);
+    //handles string data from spark 
     void newResponseString(ofxHttpResponse & response);
     void setup_url_and_data(string device_id, string access_token, string device_name_, string spark_variable_name_, bool isString);
 };

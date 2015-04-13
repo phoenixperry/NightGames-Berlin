@@ -10,6 +10,7 @@
 
 
 Spark_core_manager::Spark_core_manager(){
+    sensor_data = "no data";
 
 }
 
@@ -63,7 +64,7 @@ void Spark_core_manager::newResponseString(ofxHttpResponse & response){
         result.getRawString();
         
         sensor_data = result["result"].asString();
-        
+        cout << sensor_data << " from spark" << endl;
         string var_name = result["name"].asString();
         
         if(device_name =="device_name"){
@@ -94,20 +95,21 @@ void Spark_core_manager::newResponse(ofxHttpResponse & response){
         result.getRawString();
  
         sensor_data = result["result"].asInt();
- 
+        //cout<< sensor_data << " raw sensor data"<< endl;
         string var_name = result["name"].asString();
         
          if(device_name =="device_name"){
              //this is the function trigger from of to spark core and the return value from sparkcore.
-             cout<< result["return_value"].asInt() << " is returned data" << endl;
+            // cout<< result["return_value"].asInt() << " is returned data" << endl;
         }
         if( spark_variable_name ==var_name)
         {
             //this is sensor data
-            cout<< result["result"].asInt() << " is sensor data" << endl;
+           // cout<< result["result"].asInt() << " is sensor data" << endl;
         }
     }else{
         cout << "json parse failure";
+        sensor_data = "no data";
     }
 }
     void Spark_core_manager::postData(){

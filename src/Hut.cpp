@@ -41,7 +41,6 @@ Hut::Hut(){
         clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
         clips[i].loop();
         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
-        // clips[i].connectTo(filters.at(i)).connectTo(taps.at(i));
     }
     mixer.connectTo(output);
     mixer.setInputVolume(0.5, 2);
@@ -71,8 +70,10 @@ void Hut::update(){
 }
 void Hut::draw(){
     currentTime = ofGetElapsedTimeMillis();
-   // cout<< serial_reader->pad1 << "raw data" <<endl;
     if(calibrateMode){
+        for(int i =0; i < clips.size(); i++)
+        {AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, i, 0.0, 0);}
+
         if(current ==-1){
                     ofDrawBitmapString("Hello Adelle! (=^･ｪ･^=)\nWelcome to calibration mode for the hut.\nYou can change the number of seconds you calibrate for with the duration variable.\n\nTo start, press 0 to calibrate the 0 pad.\n\nWatch the console for further instructions!!\n", 100,100);
             }
@@ -83,11 +84,10 @@ void Hut::draw(){
                 if(currentTime < endTime){
                    
                     value = pads->at(current);
-                    //cout << current << "I am current pad and pad value is "<< pads->at(current) <<endl;
-                   // cout << serial_reader->pad1 << "sensor from serial reader "<<endl;
+                    //cout << current << "I am current hut pad and pad value is "<< pads->at(current) <<endl;
                     if( value < padsLow.at(current)){
                         padsLow[current] = value;
-                       //cout << value;
+                    
                     }
                     if(value > padsHigh.at(current)){
                         padsHigh.at(current) = value;
@@ -162,14 +162,6 @@ void Hut::keyReleased(ofKeyEventArgs &key){
         cout << "bye!!! Game starting now."<< endl;
     }
 }
-
-//
-//vector<ofxAudioUnitTap>& Hut::getTaps(){
-//    
-//    return taps;
-//}
-//
-//
 
 
 

@@ -17,15 +17,17 @@
 class Rock{
 public:
 //    
-//    Rock(Spark_core_manager *spark_);
-//    Spark_core_manager *spark;
-    Rock();
+    Rock(Spark_core_manager *spark_);
+    Spark_core_manager *spark;
+//    Rock();
     ofxAudioUnit filter;
     ofxAudioUnitTap tap;
     ofxAudioUnitOutput output;
     ofxAudioUnitMixer mix;
-    ofxAudioUnitFilePlayer clip; 
-    
+    ofxAudioUnitFilePlayer clip;
+    void update();
+//    int data=0;
+    string data;
 };
 
 #endif /* defined(__http_example__Rock__) */

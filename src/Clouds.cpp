@@ -58,6 +58,9 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
 }
 void Clouds::update(){
     currentTime = ofGetElapsedTimeMillis() - startTime;
+    for(int i =0; i < 5; i++)
+    {AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, i, 0.0, 0);}
+
     
 }
 void Clouds::draw(){
