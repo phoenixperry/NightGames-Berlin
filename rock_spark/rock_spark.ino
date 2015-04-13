@@ -1,5 +1,5 @@
-// This #include st// This #include statement was automatically added by the Spark IDE.
-#include "neopixel.h"
+// This #include statement was automatically added by the Spark IDE.
+#include "neopixel/neopixel.h"
 
 #define PIXEL_TYPE WS2812B
 #define PIXEL_PIN D5
@@ -17,12 +17,11 @@ int z_axis = 0, y_axis = 0, x_axis = 0;
 int z_axis_prev = 0, y_axis_prev = 0, x_axis_prev = 0;
 
 int motion = 0;
-char* motion_string;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
 
 void setup() {
-    Spark.variable("motion", &motion_string, STRING);
+    Spark.variable("motion", &motion, INT);
     pinMode(IR_LED_0, OUTPUT);
     pinMode(IR_LED_1, OUTPUT);
     pinMode(VIBE, OUTPUT);
@@ -90,9 +89,6 @@ void loop() {
     }
     strip.show();
     motion = m;
-    sprintf (motion_string, "%d", m);
-  
 
     delay(100);
-
 }

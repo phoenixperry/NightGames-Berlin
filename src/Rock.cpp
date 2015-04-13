@@ -27,18 +27,18 @@ void Rock::update(){
   
     
     data = spark->sensor_data;
-  // cout<<  data << "number!";
-   // cout<< data.at(1) << "raw first " << endl;
-
-  //  cout << data << " is the rock data" << endl;
- //   float newSpeed = ofMap(data, 255, 0, 0, 1.0,true);
+    //cout<<  data << "number!";
+    int num = ofToInt(data);
     
-//    AudioUnitSetParameter(filter,  kVarispeedParam_PlaybackRate,
-//                          kAudioUnitScope_Global,
-//                          0,
-//                          newSpeed,
-//                          0);
-//    AudioUnitSetParameter(mix, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 0, newSpeed, 0);
+    cout << num << " is the rock data" << endl;
+    float newSpeed = ofMap(num, 255, 0, 0, 1.0,true);
+    
+    AudioUnitSetParameter(filter,  kVarispeedParam_PlaybackRate,
+                          kAudioUnitScope_Global,
+                          0,
+                          newSpeed,
+                          0);
+    AudioUnitSetParameter(mix, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 0, newSpeed, 0);
 
  
 }
