@@ -37,7 +37,7 @@ Stars::Stars(Spark_core_manager *spark_){
         ofSetVerticalSync(true);
     mixer.connectTo(output);
     mixer.setInputVolume(1.0f, 2);
-    mixer.setOutputVolume(0.5f);
+    mixer.setOutputVolume(0.8f);
     output.start(); 
 }
 
@@ -83,8 +83,12 @@ void Stars::update(){
                           0,
                           newCutoffTwo,
                           0);
+    float vol = ofMap(star_one_average, 1000.0f, 4000.0f, 0.0f, 1.0f);
+    float volTwo = ofMap(star_two_average, 1000.0f, 40000.0f, 0.0f, 1.0f);
 
-    
+    AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 0, vol, 0);
+    AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 1, volTwo, 0);
+
 }
 
 Stars::~Stars(){
