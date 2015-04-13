@@ -13,7 +13,7 @@ Spark_core_manager::Spark_core_manager(){
 
 }
 
-void Spark_core_manager::setup_url_and_data(string device_id, string access_token, string device_name_, string spark_variable_name_) {
+void Spark_core_manager::setup_url_and_data(string device_id, string access_token, string device_name_, string spark_variable_name_, bool isString) {
     //this inits the object settings and also gets the url
     //set up for get requests with a variable from the core
     hasInited = true;
@@ -30,7 +30,8 @@ void Spark_core_manager::setup_url_and_data(string device_id, string access_toke
     cout << action_url << " is the action url" << endl;
     
     //this is a listener that fires a function everytime there's a new event here involving http
-    ofAddListener(httpUtils.newResponseEvent,this, &Spark_core_manager::newResponse);
+    if(isString){ofAddListener(httpUtils.newResponseEvent,this, &Spark_core_manager::newResponseString);}
+        else {ofAddListener(httpUtils.newResponseEvent,this, &Spark_core_manager::newResponse);}
     
     //start up http stuffs
     httpUtils.start();
@@ -47,6 +48,36 @@ void Spark_core_manager::threadedFunction()
             }
         }
      }
+}
+void Spark_core_manager::newResponseString(ofxHttpResponse & response){
+    responseStr = ofToString(response.status) + ": " + (string)response.responseBody;
+    //note that it can't tell the 2 different types of json objects apart from get and post so the get and post both make objects and both
+    //save out to this result which is kinda annoying. this is why I did the if statements to get the name
+    
+    //print raw json data so you can see all the data. see the ofxjson exampl for more info here.
+    //cout << responseStr;
+    bool parse =result.parse(response.responseBody);
+    if(parse)
+    {
+        
+        result.getRawString();
+        
+        sensor_data = result["result"].asString();
+        
+        string var_name = result["name"].asString();
+        
+        if(device_name =="device_name"){
+            //this is the function trigger from of to spark core and the return value from sparkcore.
+            cout<< result["return_value"].asString() << " is returned data" << endl;
+        }
+        if( spark_variable_name ==var_name)
+        {
+            //this is sensor data
+          //  cout<< result["result"].asString() << " is sensor data" << endl;
+        }
+    }else{
+        cout << "json parse failure";
+    }
 }
 
 void Spark_core_manager::newResponse(ofxHttpResponse & response){

@@ -83,7 +83,7 @@ void Hut::draw(){
                 if(currentTime < endTime){
                    
                     value = pads->at(current);
-                    cout << current << "I am current pad and pad value is "<< pads->at(current) <<endl;
+                    //cout << current << "I am current pad and pad value is "<< pads->at(current) <<endl;
                    // cout << serial_reader->pad1 << "sensor from serial reader "<<endl;
                     if( value < padsLow.at(current)){
                         padsLow[current] = value;

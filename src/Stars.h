@@ -26,8 +26,8 @@ public:
     Spark_core_manager *spark;
     Stars(Spark_core_manager *spark_);
     //Stars();
-    void newResponse(ofxHttpResponse & response);
-    
+    //void newResponse(ofxHttpResponse & response);
+    vector<int> sensors;
     void update();
     void draw();
     

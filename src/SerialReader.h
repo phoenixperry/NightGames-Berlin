@@ -26,6 +26,7 @@ public:
     int sensorPadValue;
     string serialData;
     
+    
 //    int pads[NUM_PADS] = {0,1,2,3,4,5,6,7,8,9,10} ;
     int pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9, pad10, pad11, pad0=0;
 };

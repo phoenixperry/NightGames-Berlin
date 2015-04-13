@@ -35,6 +35,7 @@ public:
     std::string  url_name1;
     std::string  url_name2;
     
+    
     string args;
     //must be set to send data to spark. change this var to send different data when the post request is called
     string spark_function_name="set_leds";
@@ -44,6 +45,7 @@ public:
     //switch for the update loop to send data to spark
     bool hasInited = false;
     //is object is set up for get requests
+
     
     ofxHttpUtils httpUtils;
     ofxJSONElement result;
@@ -56,6 +58,6 @@ public:
     void threadedFunction();
     void quit();
     void newResponse(ofxHttpResponse & response);
-    
-    void setup_url_and_data(string device_id, string access_token, string device_name_, string spark_variable_name_);
+    void newResponseString(ofxHttpResponse & response);
+    void setup_url_and_data(string device_id, string access_token, string device_name_, string spark_variable_name_, bool isString);
 };

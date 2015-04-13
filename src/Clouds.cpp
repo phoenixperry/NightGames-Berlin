@@ -50,6 +50,7 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
     clouds4.loop();
     clouds5.loop();
     mixer.setInputVolume(.5,2);
+    mixer.setOutputVolume(0.1); 
 
     //delay.showUI();
     startTime = ofGetElapsedTimeMillis();

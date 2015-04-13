@@ -5,10 +5,11 @@
 //  Created by Phoenix Perry on 4/11/15.
 //
 //
-
+#include <sstream>
 #include "Stars.h"
 Stars::Stars(Spark_core_manager *spark_){
-    spark = spark_; 
+    spark = spark_;
+    sensors.resize(NUM_LIGHT_SENSORS);
     filters.resize(NUM_LIGHT_SENSORS);
     taps.resize(NUM_LIGHT_SENSORS);
     clips.resize(NUM_LIGHT_SENSORS);
@@ -35,7 +36,7 @@ Stars::Stars(Spark_core_manager *spark_){
         ofSetVerticalSync(true);
     mixer.connectTo(output);
     mixer.setInputVolume(1.0f, 2);
-    mixer.setOutputVolume(1.0f);
+    mixer.setOutputVolume(0.1f);
     output.start(); 
 }
 
@@ -44,6 +45,32 @@ Stars::Stars(Spark_core_manager *spark_){
 //    
 //    return taps;
 //}
+void Stars::update(){
+    string data = spark->sensor_data;
+    //cout << data<< endl;
+    vector<int> vect;
+    stringstream ss(data);
+    int i;
+    int count=0;
+    while(ss >> i)
+    {
+        vect.push_back(i);
+        if(ss.peek()== ',')
+            ss.ignore();
+        sensors[count] = i;
+        count++;
+    }
+    count = 0;
+    for(int i=0; i<sensors.size(); i++)
+    {
+        //cout << sensors[i] << "sensor " << i << endl;
+    }
+    
+    float star_one_average = sensors[0] + sensors[1]/2;
+    float star_two_average = sensors[2] + sensors[3]/2;
+    
+}
+
 Stars::~Stars(){
 
 }
