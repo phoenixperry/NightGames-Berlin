@@ -51,7 +51,7 @@
 
 //We can use any of these!!! 
 //int leds[] = {0,1,5,6,7,8,9,10,11,12,13,A0,A1,A2,A3,A4,A5}; // these are the pads you can use for digital output  
-int leds[] = {A0,A1,A2,A3,A4,A5,0}  
+int leds[] = {A0,A1,A2,A3,A4,A5,0}; 
 
 int startTime =0; 
 int durration = 3000;  
