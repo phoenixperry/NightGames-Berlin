@@ -24,7 +24,7 @@
 		</dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		UiAv352j//NwiLw8uNfnVU4Pt9M=
+		MiJY1XwuBLo1NtFh1RF1s3OD48M=
 		</data>
 		<key>Resources/PowerManagement.plist</key>
 		<data>
@@ -32,14 +32,14 @@
 		</data>
 		<key>Resources/version.plist</key>
 		<data>
-		SCN8z5aDC0QS5dclwKT419Lke1I=
+		+/+SZsJYM2v4EqDP6BQvotvZnjY=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>MIDIServer</key>
 		<data>
-		cBOboYQ94lcbprKN7vQl+MDCKMc=
+		AOPUiQCKtwPbSJ7d8/Gci2RhGDc=
 		</data>
 		<key>Resources/English.lproj/MIDIServerLocalizable.strings</key>
 		<dict>
@@ -61,7 +61,7 @@
 		</dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		UiAv352j//NwiLw8uNfnVU4Pt9M=
+		MiJY1XwuBLo1NtFh1RF1s3OD48M=
 		</data>
 		<key>Resources/PowerManagement.plist</key>
 		<data>
@@ -69,7 +69,7 @@
 		</data>
 		<key>Resources/version.plist</key>
 		<data>
-		SCN8z5aDC0QS5dclwKT419Lke1I=
+		+/+SZsJYM2v4EqDP6BQvotvZnjY=
 		</data>
 	</dict>
 	<key>rules</key>

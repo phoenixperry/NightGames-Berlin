@@ -33,23 +33,14 @@
 #define MPR121_ADDR 0x5C
 #define MPR121_INT 4
 
-// mp3 includes
-#include <SPI.h>
-#include <SdFat.h>
-#include <SdFatUtil.h> 
-#include <SFEMP3Shield.h>
 
-// mp3 variables
-SFEMP3Shield MP3player;
-byte result;
-int lastPlayed = 0;
 
 // touch behaviour definitions
 #define firstPin 0
 #define lastPin 11
-#define NUM_LEDS 7 
+#define NUM_LEDS 7  
 // sd card instantiation
-SdFat sd;
+// SdFat sd;
 
 // define LED_BUILTIN for older versions of Arduino
 #ifndef LED_BUILTIN
@@ -58,8 +49,9 @@ SdFat sd;
 #endif
 
 
-
-int leds[] = {3,5,6,9,10,11,13}; // these are the pads you can use for digital output  
+//We can use any of these!!! 
+//int leds[] = {0,1,5,6,7,8,9,10,11,12,13,A0,A1,A2,A3,A4,A5}; // these are the pads you can use for digital output  
+/int leds[] = {A0,A1,A2,A3,A4,A5,0}  
 
 int startTime =0; 
 int durration = 3000;  
@@ -72,14 +64,14 @@ void setup(){
   pinMode(LED_BUILTIN, OUTPUT);
   for(int i =0; i <NUM_LEDS; i++) 
  {
-  // pinMode(i, OUTPUT); //set up pints 
+    pinMode(i, OUTPUT); //set up pints 
  } 
 
 
   //while (!Serial) ; {} //uncomment when using the serial monitor 
   Serial.println("Bare Conductive Proximity MP3 player");
 
-  if(!sd.begin(SD_SEL, SPI_HALF_SPEED)) sd.initErrorHalt();
+  // if(!sd.begin(SD_SEL, SPI_HALF_SPEED)) sd.initErrorHalt();
 
   if(!MPR121.begin(MPR121_ADDR)) Serial.println("error setting up MPR121");
   MPR121.setInterruptPin(MPR121_INT);
@@ -95,14 +87,14 @@ void setup(){
   // default value is 20 for touch
   MPR121.setReleaseThreshold(4);  
 
-  result = MP3player.begin(); 
-  MP3player.setVolume(10,10);
+  // result = MP3player.begin(); 
+  // MP3player.setVolume(10,10);
  
-  if(result != 0) {
-    Serial.print("Error code: ");
-    Serial.print(result);
-    Serial.println(" when trying to start MP3 player");
-   }
+  // if(result != 0) {
+  //   Serial.print("Error code: ");
+  //   Serial.print(result);
+  //   Serial.println(" when trying to start MP3 player");
+  //  }
 
 }
 void loop(){
@@ -114,7 +106,7 @@ void loop(){
     on = false; 
 
   }
- // readTouchInputs();
+  readTouchInputs();
   for(int i=0; i<12; i++){
     MPR121.updateFilteredData(); 
     int d = MPR121.getFilteredData(i);
@@ -133,7 +125,7 @@ void loop(){
    
 //    MPR121.updateBaselineData(); 
 //    int c = MPR121.getBaselineData(i);
-    if (Serial.available() > 0) {  
+    //if (Serial.available() > 0) {  
       // get incoming byte:
       if(i < 10){
         Serial.print(0);
@@ -146,7 +138,7 @@ void loop(){
         Serial.println(d);
       }
     Serial.flush();  
-    }
+    //}
   }  
 }
 
@@ -157,20 +149,21 @@ void readTouchInputs(){
 //      int d = MPR121.getFilteredData(i);
 //      Serial.print("d 
 //  }
-  if(MPR121.touchStatusChanged()){
+  //if(MPR121.touchStatusChanged()){
     
     MPR121.updateTouchData();
 
     // only make an action if we have one or fewer pins touched
     // ignore multiple touches
     
-    if(MPR121.getNumTouches()<=1){
+    //if(MPR121.getNumTouches()<=1){
       for (int i=0; i < 12; i++){  // Check which electrodes were pressed
         if(MPR121.isNewTouch(i)){
         
             //pin i was just touched
             Serial.print("pin ");
-            Serial.print(i);
+            Serial.print(i); 
+             digitalWrite(i, HIGH);
             Serial.println(" was just touched");
            // digitalWrite(leds[i], HIGH); 
         }else{
@@ -178,12 +171,13 @@ void readTouchInputs(){
             Serial.print("pin ");
             Serial.print(i);
             Serial.println(" is no longer being touched");
+            digitalWrite(i, LOW);
           //  digitalWrite(LED_BUILTIN, LOW);
          } 
         }
       }
-    }
-  }
+    //}
+  //}
 }
 
 
