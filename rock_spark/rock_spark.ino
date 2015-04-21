@@ -1,5 +1,5 @@
 // This #include statement was automatically added by the Spark IDE.
-#include "neopixel/neopixel.h"
+#include "neopixel.h"
 
 #define PIXEL_TYPE WS2812B
 #define PIXEL_PIN D5
@@ -90,5 +90,5 @@ void loop() {
     strip.show();
     motion = m;
 
-    delay(100);
+    //delay(100);
 }

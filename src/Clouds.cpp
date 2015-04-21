@@ -27,8 +27,12 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitTap tap;
         ofxAudioUnit varispeed;
-        varispeed.setup(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
-        //varispeed.loadCustomPreset(ofFilePath::getAbsolutePath("audioPresets/bandpass_start.aupreset"));
+       // varispeed.setup(kAudioUnitType_Effect, kAudioUnitSubType_Pitch);
+        varispeed.setup(kAudioUnitType_Effect, kAudioUnitSubType_Delay);
+    
+       // varispeed.loadCustomPresetAtPath(ofFilePath::getAbsolutePath("audioPresets/delay_start.aupreset"));
+        //varispeed.loadCustomPreset(ofFilePath::getAbsolutePath("audioPresets/delay_start.aupreset"));
+        varispeed.loadCustomPreset("audioPresets/delay_start.aupreset");
         filters[i] = varispeed;
         taps[i] = tap;
     }
@@ -60,8 +64,11 @@ void Clouds::update(){
         //depending on tx and ty = i * 0.2
         float ty = i*0.2;
         vol[i] = ofNoise( tx, ty );	//Perlin noise
-     // AudioUnitSetParameter(filters[i], kParametricEQParam_Gain, kAudioUnitScope_Global, 0, vol[i], 0);
-        AudioUnitSetParameter(filters[i], kHighShelfParam_CutOffFrequency, kAudioUnitScope_Global, 0, vol[i]*stars_average, 0);
+        ofMap( stars_average, 0, 1000, 0, 100);
+        AudioUnitSetParameter(filters[i], kDelayParam_DelayTime , kAudioUnitScope_Global, 0, stars_average, 0);
+        //AudioUnitSetParameter(filters[i], kDelayParam_LopassCutoff , kAudioUnitScope_Global, 0, vol[i]*1486, 0);
+        //AudioUnitSetParameter(filters[i], kDelayParam_WetDryMix, kAudioUnitScope_Global, 0, vol[i]*100, 0 );
+        //AudioUnitSetParameter(filters[i], kHighShelfParam_CutOffFrequency, kAudioUnitScope_Global, 0, vol[i]*stars_average, 0);
         
     }
     
@@ -70,8 +77,8 @@ void Clouds::update(){
     
 }
 void Clouds::draw(){
-    int x = ofGetMouseX();
-    mixer.setPan(ofMap(x, 0, ofGetWidth(), -1, 1, true));
+    //int x = ofGetMouseX();
+   // mixer.setPan(ofMap(x, 0, ofGetWidth(), -1, 1, true));
 }
 
 void Clouds::update_star_data(float val)
