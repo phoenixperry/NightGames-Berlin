@@ -64,7 +64,8 @@ public:
     vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;
     
-   
+   // other apprach 
+
 };
 
 #endif /* defined(__http_example__Clouds__) */

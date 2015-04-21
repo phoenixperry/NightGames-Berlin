@@ -30,7 +30,7 @@ void Rock::update(){
     //cout<<  data << "number!";
     int num = ofToInt(data);
     
-    cout << num << " is the rock data" << endl;
+   // cout << num << " is the rock data" << endl;
     float newSpeed = ofMap(num, 255, 0, 0, 1.0,true);
     
     AudioUnitSetParameter(filter,  kVarispeedParam_PlaybackRate,

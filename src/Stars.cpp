@@ -13,9 +13,9 @@ Stars::Stars(Spark_core_manager *spark_){
     filters.resize(NUM_LIGHT_SENSORS);
     taps.resize(NUM_LIGHT_SENSORS);
     clips.resize(NUM_LIGHT_SENSORS);
-    mixer.setInputBusCount(NUM_LIGHT_SENSORS/2);
+    mixer.setInputBusCount(NUM_LIGHT_SENSORS);
     
-    for (int i=0; i<NUM_LIGHT_SENSORS/2; i++) {
+    for (int i=0; i<NUM_LIGHT_SENSORS; i++) {
         ofxAudioUnitTap tap;
         ofxAudioUnit lowPass;
         lowPass.setup(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
@@ -25,7 +25,7 @@ Stars::Stars(Spark_core_manager *spark_){
     }
     
     
-    for(int i = 0; i < NUM_LIGHT_SENSORS/2; i++)
+    for(int i = 0; i < NUM_LIGHT_SENSORS; i++)
     {
         
         ofxAudioUnitFilePlayer filePlayer;
@@ -64,8 +64,8 @@ void Stars::update(){
       //this comment will print out the sensor data coming in from the sparkcore.
     }
     
-    float star_one_average = sensors[0] + sensors[1]/2;
-    float star_two_average = sensors[2] + sensors[3]/2;
+    float star_one_average = sensors[0];
+    float star_two_average = sensors[1];
     holder = star_one_average +star_two_average/2;
    // stars_average = &holder;
     float newCutoff = ofMap(star_one_average, 1000, 4000, 10, 6900);
@@ -84,7 +84,7 @@ void Stars::update(){
                           0);
     float vol = ofMap(star_one_average, 1000.0f, 4000.0f, 0.0f, 1.0f);
     float volTwo = ofMap(star_two_average, 1000.0f, 40000.0f, 0.0f, 1.0f);
-
+    // cout << vol;
     AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 0, vol, 0);
     AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 1, volTwo, 0);
 

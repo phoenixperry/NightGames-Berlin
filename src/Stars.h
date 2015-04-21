@@ -14,7 +14,7 @@
 #include "ofxAudioUnit.h"
 #include "Spark_core_manager.h"
 
-#define NUM_LIGHT_SENSORS 4
+#define NUM_LIGHT_SENSORS 2
 class Stars{
 public:
     vector<ofxAudioUnit> filters;

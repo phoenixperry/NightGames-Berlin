@@ -12,7 +12,7 @@
 Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
     spark = spark_;
     p = p_;
-
+    
         //varispeed.loadCustomPreset(ofFilePath::getAbsolutePath("audioPresets/reverb_start.aupreset"));
     
     
@@ -27,11 +27,9 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitTap tap;
         ofxAudioUnit varispeed;
-       // varispeed.setup(kAudioUnitType_Effect, kAudioUnitSubType_Pitch);
+
         varispeed.setup(kAudioUnitType_Effect, kAudioUnitSubType_Delay);
-    
-       // varispeed.loadCustomPresetAtPath(ofFilePath::getAbsolutePath("audioPresets/delay_start.aupreset"));
-        //varispeed.loadCustomPreset(ofFilePath::getAbsolutePath("audioPresets/delay_start.aupreset"));
+  
         varispeed.loadCustomPreset("audioPresets/delay_start.aupreset");
         filters[i] = varispeed;
         taps[i] = tap;
@@ -45,7 +43,7 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
     }
     mixer.connectTo(output);
-    mixer.setInputVolume(1, 2);
+    mixer.setInputVolume(0.5, 2);
     mixer.setOutputVolume(1.0f);
     output.start();
     
@@ -66,10 +64,7 @@ void Clouds::update(){
         vol[i] = ofNoise( tx, ty );	//Perlin noise
         ofMap( stars_average, 0, 1000, 0, 100);
         AudioUnitSetParameter(filters[i], kDelayParam_DelayTime , kAudioUnitScope_Global, 0, stars_average, 0);
-        //AudioUnitSetParameter(filters[i], kDelayParam_LopassCutoff , kAudioUnitScope_Global, 0, vol[i]*1486, 0);
-        //AudioUnitSetParameter(filters[i], kDelayParam_WetDryMix, kAudioUnitScope_Global, 0, vol[i]*100, 0 );
-        //AudioUnitSetParameter(filters[i], kHighShelfParam_CutOffFrequency, kAudioUnitScope_Global, 0, vol[i]*stars_average, 0);
-        
+        mixer.setInputVolume(vol[i]*stars_average, i);
     }
     
     

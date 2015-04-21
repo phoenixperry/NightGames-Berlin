@@ -1,3 +1,4 @@
+
 //
 //  PitchEstimator.cpp
 //  http_example
@@ -155,7 +156,7 @@ void pitchEstimator::audioIn  (float * input, int bufferSize, int nChannels){
     {
         if((estimatedPitch[0] >= notefreq[i]) && (estimatedPitch[0] <= notefreq[i+1]))
         {
-            cout << "note found " << note[i] << endl;
+            //cout << "note found " << note[i] << endl;
             loudestFrequency = notefreq[i];
             loudestNote = note[i];
         }

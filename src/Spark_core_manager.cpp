@@ -66,7 +66,7 @@ void Spark_core_manager::newResponseString(ofxHttpResponse & response){
         sensor_data = result["result"].asString();
         cout << sensor_data << " from spark" << endl;
         string var_name = result["name"].asString();
-        
+    
         if(device_name =="device_name"){
             //this is the function trigger from of to spark core and the return value from sparkcore.
             cout<< result["return_value"].asString() << " is returned data" << endl;
@@ -95,7 +95,7 @@ void Spark_core_manager::newResponse(ofxHttpResponse & response){
         result.getRawString();
  
         sensor_data = result["result"].asInt();
-        //cout<< sensor_data << " raw sensor data"<< endl;
+        //subcout<< sensor_data << " raw sensor data"<< endl;
         string var_name = result["name"].asString();
         
          if(device_name =="device_name"){
