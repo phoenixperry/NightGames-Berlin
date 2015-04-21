@@ -66,6 +66,8 @@ void Stars::update(){
     
     float star_one_average = sensors[0] + sensors[1]/2;
     float star_two_average = sensors[2] + sensors[3]/2;
+    holder = star_one_average +star_two_average/2;
+   // stars_average = &holder;
     float newCutoff = ofMap(star_one_average, 1000, 4000, 10, 6900);
     float newCutoffTwo = ofMap(star_two_average, 2000, 4000, 10, 6900);
     AudioUnitSetParameter(filters[0],

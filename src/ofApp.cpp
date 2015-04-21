@@ -15,15 +15,17 @@ void ofApp::setup(){
     hut = new Hut();
     rock = new Rock(spark_rock);
     stars = new Stars(spark_clouds);
-    
+    clouds = new Clouds(spark_clouds, p);
     ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
-
+    clouds->update_star_data(stars->holder); 
 }
 void ofApp::update(){
     hut->update();
      p->update();
     clouds->update();
     stars->update();
+    //send star data to clouds
+    
     ofSoundUpdate();
     rock->update(); 
 

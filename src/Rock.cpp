@@ -19,7 +19,7 @@ Rock::Rock(Spark_core_manager *spark_){
     mix.setOutputVolume(1.0f);
     output.start();
     ofSetVerticalSync(true);
-    clip.loop();
+   //sla clip.loop();
   //  clip.play();
 }
 

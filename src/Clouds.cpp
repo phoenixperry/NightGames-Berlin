@@ -8,65 +8,75 @@
 
 #include "Clouds.h"
 #include "Spark_core_manager.h"
-Spark_core_manager *spark;
+
 Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
     spark = spark_;
     p = p_;
-    reverb.setup('aufx', 'mrev', 'appl');
 
+        //varispeed.loadCustomPreset(ofFilePath::getAbsolutePath("audioPresets/reverb_start.aupreset"));
     
-    reverb.connectTo(mixer).connectTo(output);
     
-    output.start();
+    filters.resize(NUM_SENSORS);
+    taps.resize(NUM_SENSORS);
+    clips.resize(NUM_SENSORS);
     
-    clouds1.setFile(ofToDataPath("sound/clouds1.aif"));
-    clouds2.setFile(ofToDataPath("sound/clouds2.aif"));
-    clouds3.setFile(ofToDataPath("sound/clouds3.aif"));
-    clouds4.setFile(ofToDataPath("sound/clouds4.aif"));
-    clouds5.setFile(ofToDataPath("sound/clouds5.aif"));
 
+    mixer.setInputBusCount(NUM_SENSORS);
+    //audio setup
     
-    clouds1.connectTo(reverb).connectTo(tap1);
-    clouds2.connectTo(reverb).connectTo(tap2);
-    clouds3.connectTo(reverb).connectTo(tap3);
-    clouds4.connectTo(reverb).connectTo(tap4);
-    clouds5.connectTo(reverb).connectTo(tap5);
-    mixer.setInputBusCount(5);
+    for (int i=0; i<NUM_SENSORS; i++) {
+        ofxAudioUnitTap tap;
+        ofxAudioUnit varispeed;
+        varispeed.setup(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
+        //varispeed.loadCustomPreset(ofFilePath::getAbsolutePath("audioPresets/bandpass_start.aupreset"));
+        filters[i] = varispeed;
+        taps[i] = tap;
+    }
     
-    tap1.connectTo(mixer, 0);
-    tap2.connectTo(mixer, 1);
-    tap3.connectTo(mixer, 2);
-    tap4.connectTo(mixer, 3);
-    tap5.connectTo(mixer, 4);
-    
+    for (int i=0; i<NUM_SENSORS; i++) {
+        ofxAudioUnitFilePlayer filePlayer;
+        
+        clips[i].setFile(ofFilePath::getAbsolutePath("sound/cloud"+ofToString(i+1)+".wav"));
+        clips[i].loop();
+        clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
+    }
     mixer.connectTo(output);
+    mixer.setInputVolume(1, 2);
+    mixer.setOutputVolume(1.0f);
     output.start();
     
     ofSetVerticalSync(true);
 
-    clouds1.loop();
-    clouds2.loop();
-    clouds3.loop();
-    clouds4.loop();
-    clouds5.loop();
-    mixer.setInputVolume(.5,2);
-    mixer.setOutputVolume(0.1); 
-
-    //delay.showUI();
-    startTime = ofGetElapsedTimeMillis();
     
 }
 void Clouds::update(){
-    currentTime = ofGetElapsedTimeMillis() - startTime;
+    currentTime = ofGetElapsedTimeMillis();
+    float tx = currentTime*0.1+50; //volume smoothing
+    
     for(int i =0; i < 5; i++)
-    {AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, i, 0.0, 0);}
+    {
+     
+        //Calculate the sample volume as 2D Perlin noise,
+        //depending on tx and ty = i * 0.2
+        float ty = i*0.2;
+        vol[i] = ofNoise( tx, ty );	//Perlin noise
+     // AudioUnitSetParameter(filters[i], kParametricEQParam_Gain, kAudioUnitScope_Global, 0, vol[i], 0);
+        AudioUnitSetParameter(filters[i], kHighShelfParam_CutOffFrequency, kAudioUnitScope_Global, 0, vol[i]*stars_average, 0);
+        
+    }
+    
+    
 
     
 }
 void Clouds::draw(){
     int x = ofGetMouseX();
     mixer.setPan(ofMap(x, 0, ofGetWidth(), -1, 1, true));
-   
+}
+
+void Clouds::update_star_data(float val)
+{
+    stars_average = val;
 }
 
 void Clouds::triggerLed(string color)

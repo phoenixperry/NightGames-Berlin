@@ -30,7 +30,8 @@ public:
     vector<int> sensors;
     void update();
     void draw();
-    
+    float * stars_average;
+    float holder =0; // just holds current average
 //    vector<ofxAudioUnitTap>& getTaps();
     
     ~Stars();

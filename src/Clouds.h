@@ -1,3 +1,4 @@
+
 //
 //  Clouds.h
 //  http_example
@@ -31,6 +32,7 @@ public:
     void update();
     void draw();
     void triggerLed(string color);
+    void update_star_data(float val);
    // ~Clouds();
    // void setupSpark(Spark_core_manager *spark_);
     
@@ -54,7 +56,14 @@ public:
     float currentTime, startTime;
     float duration = 10;
     bool fade = false;
-
+    
+    const static int NUM_SENSORS = 5;				//Number of the samples
+    float vol[NUM_SENSORS];					//Volumes of the samples
+    float stars_average; 
+    vector<ofxAudioUnit> filters;
+    vector<ofxAudioUnitTap>taps;
+    vector<ofxAudioUnitFilePlayer> clips;
+    
    
 };
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ThresholdOK</key>
+	<integer>1</integer>
+	<key>data</key>
+	<data>
+	AAAAAAAAAAAAAAAfAAAAAAAAAAAAAAABAAAAAAAAAAJDd67xAAAAA0RhAAAAAAAERXoA
+	AAAAAAXCLJrKAAAABsICAAAAAAAHwiC+hAAAAAjCKgAAAAAACUCs3PAAAAAKQfAAAAAA
+	AAtB8AAAAAAADEHwAAAAAAANPTOyxQAAAA4/gsvsAAAAD0DNexsAAAAQAAAAAAAAABFB
+	LF3uAAAAEgAAAAAAAAPoAAAAAAAAB9AAAAAAAAALuAAAAAAAAA+gAAAAAAAAE4jC8AAA
+	AAAXcMLwAAAAABtYwvAAAAAAH0DC8AAAAAAjKMLwAAAAACcQwvAAAAAAKvjC8AAAAAAu
+	4MLwAAA=
+	</data>
+	<key>manufacturer</key>
+	<integer>1634758764</integer>
+	<key>name</key>
+	<string>MB Comp Start</string>
+	<key>subtype</key>
+	<integer>1835232624</integer>
+	<key>type</key>
+	<integer>1635083896</integer>
+	<key>version</key>
+	<integer>0</integer>
+</dict>
+</plist>
