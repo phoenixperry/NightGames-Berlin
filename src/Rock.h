@@ -28,6 +28,7 @@ public:
     void update();
 //    int data=0;
     string data;
+    int sensorData = 0; 
 };
 
 #endif /* defined(__http_example__Rock__) */

@@ -62,11 +62,15 @@ void Clouds::update(){
         //depending on tx and ty = i * 0.2
         float ty = i*0.2;
         vol[i] = ofNoise( tx, ty );	//Perlin noise
-        ofMap( stars_average, 0, 1000, 0, 100);
-        AudioUnitSetParameter(filters[i], kDelayParam_DelayTime , kAudioUnitScope_Global, 0, stars_average, 0);
+        
+        //this num might need to change 
+        float timeDelay= ofMap( stars_average, 500, 4000, 0, 0.5);
+        AudioUnitSetParameter(filters[i], kDelayParam_DelayTime , kAudioUnitScope_Global, 0, timeDelay, 0);
+          float num = ofMap( stars_average, 500, 4000, 0, 90);
+          AudioUnitSetParameter(filters[i], kDelayParam_WetDryMix , kAudioUnitScope_Global, 0, num, 0);
         mixer.setInputVolume(vol[i]*stars_average, i);
         mixer.setOutputVolume(vol[i]*stars_average);
-        
+
     }
     
     

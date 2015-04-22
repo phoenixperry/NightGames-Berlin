@@ -33,6 +33,8 @@ Hut::Hut(){
         ofxAudioUnitTap tap;
         ofxAudioUnit varispeed;
         varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
+        
+        
         filters[i] = varispeed;
         taps[i] = tap;
     }

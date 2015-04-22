@@ -20,7 +20,6 @@ Rock::Rock(Spark_core_manager *spark_){
     output.start();
     ofSetVerticalSync(true);
    //sla clip.loop();
-  //  clip.play();
 }
 
 void Rock::update(){
@@ -28,10 +27,10 @@ void Rock::update(){
     
     data = spark->sensor_data;
     //cout<<  data << "number!";
-    int num = ofToInt(data);
-    
+    sensorData  = ofToInt(data);
+    if(sensorData > 300){
    // cout << num << " is the rock data" << endl;
-    float newSpeed = ofMap(num, 255, 0, 0, 1.0,true);
+    float newSpeed = ofMap(sensorData, 255, 0, 0, 1.0,true);
     
     AudioUnitSetParameter(filter,  kVarispeedParam_PlaybackRate,
                           kAudioUnitScope_Global,
@@ -39,7 +38,7 @@ void Rock::update(){
                           newSpeed,
                           0);
     AudioUnitSetParameter(mix, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 0, newSpeed, 0);
-
+    }
  
 }
 //change speed based on rock
