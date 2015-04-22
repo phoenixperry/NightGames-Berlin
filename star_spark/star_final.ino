@@ -1,10 +1,9 @@
 // This #include statement was automatically added by the Spark IDE.
-#include "neopixel.h"
+/*#include "/neopixel.h"*/
 
-#define PIXEL_PIN D0
-#define PIXEL_PIN D2
+/*#define PIXEL_PIN D1
 #define PIXEL_COUNT 2
-#define PIXEL_TYPE WS2812B
+#define PIXEL_TYPE WS2812B*/
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
 
@@ -21,31 +20,32 @@ void setup() {
     Spark.variable("combined", &combined, STRING);
 
 
-    Serial.begin(9600);
-    pinMode(A3, INPUT);
-
     pinMode(A4, INPUT);
-    pinMode(A5, INPUT);
-    pinMode(A6, INPUT);
-
+    pinMode(A1, INPUT);
+    pinMode(A2, INPUT);
+    pinMode(A3, INPUT);
+    pinMode(D0, OUTPUT);
+    pinMode(D1, OUTPUT)
     // pixels
     strip.begin();
     strip.show();
 }
 
 void loop() {
+    analog.write(D0, 255);
+    analog.write(D1, 255); 
     int reading = 0;
 
-    reading = analogRead(A3);
+    reading = analogRead(A0);
     sensor0 = reading;
-    Serial.print(sensor0); 
-    reading = analogRead(A4);
+
+    reading = analogRead(A1);
     sensor1 = reading;
 
-    reading = analogRead(A5);
+    reading = analogRead(A2);
     sensor2 = reading;
 
-    reading = analogRead(A6);
+    reading = analogRead(A3);
     sensor3 = reading;
 
     sprintf(combined, "%d,%d,%d,%d", sensor0, sensor1, sensor2, sensor3);
@@ -54,7 +54,7 @@ void loop() {
 }
 
 // from neopixl sample code
-
+/*
 void rainbow(uint8_t wait) {
   uint16_t i, j;
 
@@ -80,4 +80,4 @@ uint32_t Wheel(byte WheelPos) {
    WheelPos -= 170;
    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
-}
+}*/

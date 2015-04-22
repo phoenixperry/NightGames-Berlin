@@ -13,9 +13,9 @@ Stars::Stars(Spark_core_manager *spark_){
     filters.resize(NUM_LIGHT_SENSORS);
     taps.resize(NUM_LIGHT_SENSORS);
     clips.resize(NUM_LIGHT_SENSORS);
-    mixer.setInputBusCount(NUM_LIGHT_SENSORS);
+    mixer.setInputBusCount(NUM_LIGHT_SENSORS/2);
     
-    for (int i=0; i<NUM_LIGHT_SENSORS; i++) {
+    for (int i=0; i<NUM_LIGHT_SENSORS/2; i++) {
         ofxAudioUnitTap tap;
         ofxAudioUnit lowPass;
         lowPass.setup(kAudioUnitType_Effect, kAudioUnitSubType_LowPassFilter);
@@ -25,20 +25,20 @@ Stars::Stars(Spark_core_manager *spark_){
     }
     
     
-    for(int i = 0; i < NUM_LIGHT_SENSORS; i++)
+    for(int i = 0; i < NUM_LIGHT_SENSORS/2; i++)
     {
         
         ofxAudioUnitFilePlayer filePlayer;
         clips[i].setFile(ofFilePath::getAbsolutePath("sound/stars"+ofToString(i+1)+".aif"));
         clips[i].loop();
         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer,i);
-  
+        
     }
-        ofSetVerticalSync(true);
+    ofSetVerticalSync(true);
     mixer.connectTo(output);
     mixer.setInputVolume(1.0f, 2);
     mixer.setOutputVolume(0.8f);
-    output.start(); 
+    output.start();
 }
 
 
@@ -60,16 +60,17 @@ void Stars::update(){
     count = 0;
     for(int i=0; i<sensors.size(); i++)
     {
-      //  cout << sensors[i] << "light sensor data source " << i << endl;
-      //this comment will print out the sensor data coming in from the sparkcore.
+        //  cout << sensors[i] << "light sensor data source " << i << endl;
+        //this comment will print out the sensor data coming in from the sparkcore.
     }
     
-    float star_one_average = sensors[0];
-    float star_two_average = sensors[1];
-    holder = star_one_average +star_two_average/2;
-   // stars_average = &holder;
-    float newCutoff = ofMap(star_one_average, 1000, 4000, 10, 6900);
-    float newCutoffTwo = ofMap(star_two_average, 2000, 4000, 10, 6900);
+    float star_one_average = sensors[0] + sensors[1]/2;
+    float star_two_average = sensors[2] + sensors[3]/2;
+    holder = star_two_average+star_one_average/2; 
+    float newCutoff = ofMap(star_one_average, 0, 4000, 10, 6900);
+    float newCutoffTwo = ofMap(star_two_average, 0, 4000, 10, 6900);
+    
+    //maybe also try this with pitch 
     AudioUnitSetParameter(filters[0],
                           kLowPassParam_CutoffFrequency,
                           kAudioUnitScope_Global,
@@ -84,12 +85,12 @@ void Stars::update(){
                           0);
     float vol = ofMap(star_one_average, 1000.0f, 4000.0f, 0.0f, 1.0f);
     float volTwo = ofMap(star_two_average, 1000.0f, 40000.0f, 0.0f, 1.0f);
-    // cout << vol;
+    
     AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 0, vol, 0);
     AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, 1, volTwo, 0);
-
+    
 }
 
 Stars::~Stars(){
-
+    
 }

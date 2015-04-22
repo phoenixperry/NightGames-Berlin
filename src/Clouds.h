@@ -59,7 +59,7 @@ public:
     
     const static int NUM_SENSORS = 5;				//Number of the samples
     float vol[NUM_SENSORS];					//Volumes of the samples
-    float stars_average; 
+    float stars_average=0;
     vector<ofxAudioUnit> filters;
     vector<ofxAudioUnitTap>taps;
     vector<ofxAudioUnitFilePlayer> clips;

@@ -10,6 +10,7 @@
 		8CC6243E1AD0769600123588 /* Hut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CC6243C1AD0769600123588 /* Hut.cpp */; };
 		8CCCBCF91AD9138D003E8E35 /* Stars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCBCF71AD9138D003E8E35 /* Stars.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		D0259D381AE7575A00486488 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0259D361AE7575A00486488 /* Tree.cpp */; };
 		D048B3531AACDC6000651EA5 /* Clouds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048B3511AACDC6000651EA5 /* Clouds.cpp */; };
 		D082AA4C1AA75AC9008C914B /* Spark_core_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D082AA4A1AA75AC9008C914B /* Spark_core_manager.cpp */; };
 		D09581CD1A92963800F77DD3 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09581C31A92963700F77DD3 /* ofxJSONElement.cpp */; };
@@ -108,6 +109,8 @@
 		8CCCBCF71AD9138D003E8E35 /* Stars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stars.cpp; sourceTree = "<group>"; };
 		8CCCBCF81AD9138D003E8E35 /* Stars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stars.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		D0259D361AE7575A00486488 /* Tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tree.cpp; sourceTree = "<group>"; };
+		D0259D371AE7575A00486488 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
 		D048B3511AACDC6000651EA5 /* Clouds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clouds.cpp; sourceTree = "<group>"; };
 		D048B3521AACDC6000651EA5 /* Clouds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clouds.h; sourceTree = "<group>"; };
 		D082AA4A1AA75AC9008C914B /* Spark_core_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spark_core_manager.cpp; sourceTree = "<group>"; };
@@ -540,6 +543,8 @@
 				8CC6243D1AD0769600123588 /* Hut.h */,
 				8CCCBCF71AD9138D003E8E35 /* Stars.cpp */,
 				8CCCBCF81AD9138D003E8E35 /* Stars.h */,
+				D0259D361AE7575A00486488 /* Tree.cpp */,
+				D0259D371AE7575A00486488 /* Tree.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -643,6 +648,7 @@
 				D0B8278F1AB62E0A00FE66B9 /* maxiBark.cpp in Sources */,
 				D0E642C91AC9D49100797DB1 /* ofxAudioUnitOutput.cpp in Sources */,
 				D0E642C81AC9D49100797DB1 /* ofxAudioUnitNetSend.cpp in Sources */,
+				D0259D381AE7575A00486488 /* Tree.cpp in Sources */,
 				D0E642C51AC9D49100797DB1 /* ofxAudioUnitMidi.cpp in Sources */,
 				D0E642BE1AC9D49100797DB1 /* ofxAudioUnitCocoaUtilties.mm in Sources */,
 				D0B827901AB62E0A00FE66B9 /* maxiFFT.cpp in Sources */,

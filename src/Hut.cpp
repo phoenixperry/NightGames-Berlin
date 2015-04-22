@@ -15,6 +15,8 @@ Hut::Hut(){
     clips.resize(NUM_SENSORS);
     
     pads = new vector<int>(NUM_SENSORS);
+    
+    treePads = new vector<int>(2);
     serial_reader = new SerialReader();
     serial_reader->setup();
     for(int i=0; i <= NUM_SENSORS; i++)
@@ -38,7 +40,7 @@ Hut::Hut(){
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitFilePlayer filePlayer;
 
-        clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".aif"));
+        clips[i].setFile(ofFilePath::getAbsolutePath("sound/hut"+ofToString(i+1)+".wav"));
         clips[i].loop();
         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
     }
@@ -56,13 +58,15 @@ void Hut::update(){
     
     ///just for testing change these before shipping code
     
-        pads->at(0)= serial_reader->pad1;
-        pads->at(1) = serial_reader->pad2;
-        pads->at(2) = serial_reader->pad3;
-        pads->at(3) = serial_reader->pad4;
-        pads->at(4) = serial_reader->pad7;
-        pads->at(5) = serial_reader->pad8;
-        pads->at(6) = serial_reader->pad10;
+        pads->at(0)= serial_reader->pad0;
+        pads->at(1) = serial_reader->pad1;
+        pads->at(2) = serial_reader->pad2;
+        pads->at(3) = serial_reader->pad3;
+        pads->at(4) = serial_reader->pad4;
+        pads->at(5) = serial_reader->pad5;
+        pads->at(6) = serial_reader->pad6;
+        treePads->at(0) = serial_reader->pad7;
+        treePads->at(1) = serial_reader->pad8;
 
     //audio update
 
@@ -106,6 +110,7 @@ void Hut::draw(){
                 
                 if(current == NUM_SENSORS){
                     cout << "There are no more! Done calibrating all " << NUM_SENSORS<<" sensors! " <<endl;
+                    
                     current = -1;
                     for (int i =0; i<NUM_SENSORS; i++) {
                         cout << "the low for pad " << i <<" is " << padsLow[i] << endl;
@@ -121,7 +126,7 @@ void Hut::draw(){
     
     if(!calibrateMode){
         for (int i =0 ; i <NUM_SENSORS; i++) {
-            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 0.5,true);
+            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 1,true);
             AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
                                                             kAudioUnitScope_Global,
                                                             0,

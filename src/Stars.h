@@ -14,15 +14,15 @@
 #include "ofxAudioUnit.h"
 #include "Spark_core_manager.h"
 
-#define NUM_LIGHT_SENSORS 2
+#define NUM_LIGHT_SENSORS 4
 class Stars{
 public:
     vector<ofxAudioUnit> filters;
     vector<ofxAudioUnitTap> taps;
     vector<ofxAudioUnitFilePlayer> clips;
-
+    
     ofxAudioUnitMixer mixer;
-    ofxAudioUnitOutput output; 
+    ofxAudioUnitOutput output;
     Spark_core_manager *spark;
     Stars(Spark_core_manager *spark_);
     //Stars();
@@ -30,12 +30,11 @@ public:
     vector<int> sensors;
     void update();
     void draw();
-    float * stars_average;
-    float holder =0; // just holds current average
-//    vector<ofxAudioUnitTap>& getTaps();
+    float holder =0;
+    //    vector<ofxAudioUnitTap>& getTaps();
     
     ~Stars();
-//    void mouseDragged(ofKeyEventArgs )
+    //    void mouseDragged(ofKeyEventArgs )
 };
 
 #endif /* defined(__http_example__Stars__) */

@@ -43,8 +43,8 @@ Clouds::Clouds(Spark_core_manager *spark_, pitchEstimator *p_){
         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
     }
     mixer.connectTo(output);
-    mixer.setInputVolume(0.5, 2);
-    mixer.setOutputVolume(1.0f);
+    mixer.setInputVolume(0.1, 2);
+    mixer.setOutputVolume(0.5f);
     output.start();
     
     ofSetVerticalSync(true);
@@ -65,6 +65,8 @@ void Clouds::update(){
         ofMap( stars_average, 0, 1000, 0, 100);
         AudioUnitSetParameter(filters[i], kDelayParam_DelayTime , kAudioUnitScope_Global, 0, stars_average, 0);
         mixer.setInputVolume(vol[i]*stars_average, i);
+        mixer.setOutputVolume(vol[i]*stars_average);
+        
     }
     
     

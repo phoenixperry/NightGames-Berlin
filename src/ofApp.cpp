@@ -17,13 +17,17 @@ void ofApp::setup(){
     stars = new Stars(spark_clouds);
     clouds = new Clouds(spark_clouds, p);
     ofAddListener(ofEvents().keyReleased, hut, &Hut::keyReleased);
-    clouds->update_star_data(stars->holder); 
+    clouds->update_star_data(stars->holder);
+    tree = new Tree();
 }
 void ofApp::update(){
     hut->update();
      p->update();
-    clouds->update();
     stars->update();
+    tree->update(hut->treePads->at(0), hut->treePads->at(1));
+
+    clouds->stars_average = stars->holder; //refractor holder to something sensable like stars average please! :) 
+    clouds->update();
     //send star data to clouds
     
     ofSoundUpdate();
@@ -35,6 +39,10 @@ void ofApp::draw(){
     hut->draw();
     
     clouds->draw();
+    
+    //allows hut to calibrate first
+    if(hut->calibrateMode==false)
+        tree->draw();
 }
 void ofApp::keyReleased(int key){
 //    spark_clouds->spark_function_name ="set_color";

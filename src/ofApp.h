@@ -26,5 +26,6 @@ class ofApp : public ofBaseApp{
     Hut *hut;
     Rock *rock;
     Stars *stars;
-
+    
+    Tree *tree; 
 };

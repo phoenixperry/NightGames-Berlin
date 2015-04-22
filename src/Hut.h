@@ -15,9 +15,11 @@
 #include "ofMain.h"
 #include <stdlib.h>
 #include "ofxAudioUnit.h"
+#include "Tree.h"
 #define NUM_SENSORS 7
 class Hut{
 public:
+     bool hutStup = false;
 //    ofEvent <int> calibrated;
 //    ofEvent <int> startCalibration;
     //timer for calibration
@@ -48,6 +50,7 @@ public:
  
     int current = -1;
     char keyPress =' ';
+    vector<int>*treePads;
 
     
 
