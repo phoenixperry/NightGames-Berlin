@@ -16,14 +16,14 @@
 #include <stdlib.h>
 #include "ofxAudioUnit.h"
 #include "Tree.h"
-#define NUM_SENSORS 7
+#define NUM_SENSORS 5
 class Hut{
 public:
      bool hutStup = false;
 //    ofEvent <int> calibrated;
 //    ofEvent <int> startCalibration;
     //timer for calibration
-    float duration = 3000;
+    float duration = 7000;
     SerialReader *serial_reader;
     
     bool calibrateMode = true; 

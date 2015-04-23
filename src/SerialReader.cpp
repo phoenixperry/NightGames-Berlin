@@ -67,7 +67,7 @@ void SerialReader::update(){
             else{pad11 = num;}
             
         }else{ cout << "failed to get serial data" << endl;}
-        //cout << pad << " pad "<< num << " data "<<endl;
+        
       //  cout << "pad 5 " << pad5<< endl;
         
         sensorPadValue = ofToInt(serialData);

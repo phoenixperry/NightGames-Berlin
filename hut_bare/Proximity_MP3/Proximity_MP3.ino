@@ -107,6 +107,7 @@ void loop(){
         Serial.println(d);
       }
     Serial.flush();  
+    digitalWrite(leds[i], HIGH); 
   }  
 }
 

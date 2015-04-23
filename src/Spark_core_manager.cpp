@@ -77,7 +77,7 @@ void Spark_core_manager::newResponseString(ofxHttpResponse & response){
           //  cout<< result["result"].asString() << " is sensor data" << endl;
         }
     }else{
-        cout << "json parse failure";
+       // cout << "json parse failure";
     }
 }
 
@@ -108,7 +108,7 @@ void Spark_core_manager::newResponse(ofxHttpResponse & response){
            // cout<< result["result"].asInt() << " is sensor data" << endl;
         }
     }else{
-        cout << "json parse failure";
+        //cout << "json parse failure";
         sensor_data = "no data";
     }
 }

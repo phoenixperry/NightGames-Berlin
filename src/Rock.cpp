@@ -16,19 +16,22 @@ Rock::Rock(Spark_core_manager *spark_){
     clip.connectTo(filter).connectTo(tap).connectTo(mix,1);
     mix.connectTo(output);
     mix.setInputVolume(0.8f, 1);
-    mix.setOutputVolume(1.0f);
+    mix.setOutputVolume(0.4f);
     output.start();
     ofSetVerticalSync(true);
+    clip.play();
    //sla clip.loop();
 }
-
+ 
 void Rock::update(){
   
     
     data = spark->sensor_data;
-    //cout<<  data << "number!";
+   
+    cout<<  data << "number!";
     sensorData  = ofToInt(data);
-    if(sensorData > 300){
+    if(sensorData > 3){
+     clip.play();
    // cout << num << " is the rock data" << endl;
     float newSpeed = ofMap(sensorData, 255, 0, 0, 1.0,true);
     

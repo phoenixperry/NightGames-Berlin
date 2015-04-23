@@ -61,9 +61,10 @@ Tree::Tree(){
 }
 
 void Tree::update(int pad7, int pad8){
-    
+     if(!calibrateMode) ofBackground(0, 255, 0);
     //updating the pads from the tree
    if(calibrateMode ==true)
+       
        // account for the fact setup might not of run yet
    {pads->at(0)= pad7;
        pads->at(1) = pad8;}
@@ -73,13 +74,15 @@ void Tree::update(int pad7, int pad8){
     
 }
 void Tree::draw(){
+    ofBackground(255, 255, 255);
     currentTime = ofGetElapsedTimeMillis();
     if(calibrateMode){
+        ofBackground(0, 0, 255);
         for(int i =0; i < clips.size(); i++)
         {AudioUnitSetParameter(mixer, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, i, 0.0, 0);}
         
         if(current ==-1){
-            ofDrawBitmapString("Hello! (=^･ｪ･^=)\nWelcome to calibration mode for the tree.\nYou can change the number of seconds you calibrate for with the duration variable.\n\nTo start, press 0 to calibrate the 0 pad.\n\nWatch the console for further instructions!!\n", 100,100);
+            ofDrawBitmapString("Hello! (=^･ｪ･^=)\nWelcome to calibration mode for the TREE.\nYou can change the number of seconds you calibrate for with the duration variable.\n\nTo start, press 0 to calibrate the 0 pad.\n\nWatch the console for further instructions!!\n", 100,100);
         }
         
         if(current > -1)
