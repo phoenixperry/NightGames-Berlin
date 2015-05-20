@@ -1,28 +1,4 @@
 
-/*******************************************************************************
-
- Bare Conductive Proximity MP3 player
- ------------------------------
- 
- proximity_mp3.ino - proximity triggered MP3 playback
- 
- Based on code by Jim Lindblom and plenty of inspiration from the Freescale 
- Semiconductor datasheets and application notes.
- 
- Bare Conductive code written by Stefan Dzisiewski-Smith and Peter Krige.
- 
- This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 
- Unported License (CC BY-SA 3.0) http://creativecommons.org/licenses/by-sa/3.0/
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
-
-*******************************************************************************/
 
 // compiler error handling
 #include "Compiler_Errors.h"
@@ -38,35 +14,34 @@
 // touch behaviour definitions
 #define firstPin 0
 #define lastPin 11
-#define NUM_LEDS 7  
+#define NUM_LEDS 9  
 // sd card instantiation
 // SdFat sd;
 
 // define LED_BUILTIN for older versions of Arduino
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 13
-
 #endif
 
 
 //We can use any of these!!! 
 //int leds[] = {0,1,5,6,7,8,9,10,11,12,13,A0,A1,A2,A3,A4,A5}; // these are the pads you can use for digital output  
-int leds[] = {A0,A1,A2,A3,A4,A5,0}; 
-
-int startTime =0; 
-int durration = 3000;  
-bool on = false; 
+int leds[] = {1,1,1,5,6,7,1,1}; 
+int on[] = {0,0,0,0,0,0,0,0,0,0,0,0};
 
 void setup(){  
-  startTime = millis();
   Serial.begin(57600);
   
-  pinMode(LED_BUILTIN, OUTPUT);
-  for(int i =0; i <NUM_LEDS; i++) 
+   // The EL channels are on pins 2 through 9
+  // Initialize the pins as outputs
+  
+  pinMode(5, OUTPUT);  // channel D    
+  pinMode(6, OUTPUT);  // channel E
+  pinMode(7, OUTPUT);  // channel F
+  for(int i =2; i <=9; i++) 
  {
-    pinMode(i, OUTPUT); //set up pints 
+    digitalWrite(i,LOW);
  } 
-
 
   if(!MPR121.begin(MPR121_ADDR)) Serial.println("error setting up MPR121");
   MPR121.setInterruptPin(MPR121_INT);
@@ -84,69 +59,58 @@ void setup(){
 }
 void loop(){
 
-  if(millis() > startTime + durration && on)
-  {
-
-    startTime = millis(); 
-    on = false; 
-
-  }
   readTouchInputs();
-  for(int i=0; i<12; i++){
+  writeSerialData(); 
+
+
+}
+void readTouchInputs(){
+
+    
+   //if(MPR121.touchStatusChanged()){
+    MPR121.updateTouchData();
+    for(int i=0; i<lastPin; i++){
+      if(MPR121.isNewTouch(i)){
+        Serial.print("electrode ");
+        Serial.print(i, DEC);
+        Serial.println(" was just touched"); 
+        on[i] = 1; 
+      } else if(MPR121.isNewRelease(i)){
+        Serial.print("electrode ");
+        Serial.print(i, DEC);
+        Serial.println(" was just released"); 
+        on[i] = 0;  
+      }
+    
+      if(on[i]==1){
+         digitalWrite(leds[i], HIGH);
+        }
+        else {digitalWrite(leds[i], LOW);}
+    
+    }
+  //}
+}
+ 
+void writeSerialData()
+{
+
+    for(int i=0; i<12; i++){
     MPR121.updateFilteredData(); 
     int d = MPR121.getFilteredData(i);
 
       if(i < 10){
         Serial.print(0);
+      }
         Serial.print(i);
         Serial.print(":");
         Serial.println(d);
-      }else {
-        Serial.print(i);
-        Serial.print(":");
-        Serial.println(d);
-      }
-    Serial.flush();  
-    digitalWrite(leds[i], HIGH); 
-  }  
+        Serial.flush();  
+    if(d < 700)
+    {
+      digitalWrite(leds[i], HIGH);
+
+    }
+
+  }
+
 }
-
-
-void readTouchInputs(){
-
-    
-    MPR121.updateTouchData();
-
-      for (int i=0; i < 12; i++){  // Check which electrodes were pressed
-        if(MPR121.isNewTouch(i)){
-        
-            //pin i was just touched
-            Serial.print("pin ");
-            Serial.print(i); 
-    
-            Serial.println(" was just touched");
-            digitalWrite(leds[i], HIGH); 
-        }else{
-          if(MPR121.isNewRelease(i)){
-            Serial.print("pin ");
-            Serial.print(i);
-            Serial.println(" is no longer being touched");
-            digitalWrite(LED_BUILTIN, LOW);
-         } 
-        }
-      }
- 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-

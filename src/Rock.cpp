@@ -15,11 +15,11 @@ Rock::Rock(Spark_core_manager *spark_){
     filter.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
     clip.connectTo(filter).connectTo(tap).connectTo(mix,1);
     mix.connectTo(output);
-    mix.setInputVolume(0.8f, 1);
-    mix.setOutputVolume(0.4f);
+    mix.setInputVolume(0.8f, 2);
+    mix.setOutputVolume(1.0f);
     output.start();
     ofSetVerticalSync(true);
-    clip.play();
+//    clip.play();
    //sla clip.loop();
 }
  
@@ -31,7 +31,7 @@ void Rock::update(){
     cout<<  data << "number!";
     sensorData  = ofToInt(data);
     if(sensorData > 3){
-     clip.play();
+    clip.play();
    // cout << num << " is the rock data" << endl;
     float newSpeed = ofMap(sensorData, 255, 0, 0, 1.0,true);
     

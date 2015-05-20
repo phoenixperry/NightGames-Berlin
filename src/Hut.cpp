@@ -31,9 +31,11 @@ Hut::Hut(){
         ofxAudioUnitTap tap;
         ofxAudioUnit varispeed;
         varispeed.setup(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
+    
         filters[i] = varispeed;
         taps[i] = tap;
     }
+    
     
     for (int i=0; i<NUM_SENSORS; i++) {
         ofxAudioUnitFilePlayer filePlayer;
@@ -42,8 +44,8 @@ Hut::Hut(){
         clips[i].connectTo(filters.at(i)).connectTo(taps.at(i)).connectTo(mixer, i);
     }
     mixer.connectTo(output);
-    mixer.setInputVolume(0.5, 2);
-    mixer.setOutputVolume(1.0f);
+    mixer.setInputVolume(0.3, 2);
+    mixer.setOutputVolume(8.0f);
     output.start();
     
     ofSetVerticalSync(true);
@@ -120,7 +122,8 @@ void Hut::draw(){
     
     if(!calibrateMode){
         for (int i =0 ; i <NUM_SENSORS; i++) {
-            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.01, 1.0f,true);
+            
+            float newSpeed = ofMap(pads->at(i), padsLow.at(i), padsHigh.at(i), 0.5, 1.0f,true);
             AudioUnitSetParameter(filters.at(i),  kVarispeedParam_PlaybackRate,
                                   kAudioUnitScope_Global,
                                   0,
