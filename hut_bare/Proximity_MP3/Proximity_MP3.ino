@@ -56,7 +56,7 @@ void writeSerialData()
     if(d < 700){
       digitalWrite(leds[i], HIGH);
     }
-    if(d > 700) {
+    else {
       digitalWrite(leds[i], LOW);
     }
 
