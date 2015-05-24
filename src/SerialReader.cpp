@@ -18,10 +18,10 @@ void SerialReader::setup(){
 }
 void SerialReader::update(){
 
-    serial->writeByte('a');
     
     if(serial->available()){
-        
+        serial->writeByte('a');
+
         unsigned char bytesReturned[7]; //)00:000\n\0 (New line + null terminator in serial string must all be accounted for in the bytes returned)
         
         //  memset(bytesReadString, 0, 3);
@@ -68,7 +68,7 @@ void SerialReader::update(){
             
         }else{ cout << "failed to get serial data" << endl;}
         
-      //  cout << "pad 5 " << pad5<< endl;
+       // cout << "pad 5 " << pad0<< endl;
         
         sensorPadValue = ofToInt(serialData);
         

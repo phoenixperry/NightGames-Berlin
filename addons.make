@@ -1,0 +1,5 @@
+ofxOsc
+ofxAudioUnit
+ofxHttpUtils
+ofxJSON
+ofxMaxim

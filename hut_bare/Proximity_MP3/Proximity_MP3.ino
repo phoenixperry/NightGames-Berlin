@@ -46,14 +46,14 @@ void writeSerialData()
     for(int i=0; i<12; i++){
     MPR121.updateFilteredData(); 
     int d = MPR121.getFilteredData(0);
-      // if(i < 10){
-      //   Serial.print(0);
-      // }
-      //   Serial.print(i);
-      //   Serial.print(":");
-      //   Serial.println(d);
-      //   Serial.flush();  
-      Serial.println(d); 
+      if(i < 10){
+        Serial.print(0);
+      }
+        Serial.print(i);
+        Serial.print(":");
+        Serial.println(d);
+        Serial.flush();  
+      //Serial.println(d); 
 
     if(d < 700){
       digitalWrite(leds[i], HIGH);
