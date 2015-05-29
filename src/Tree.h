@@ -15,7 +15,7 @@
 #include "SerialReader.h"
 #include "ofMain.h"
 #include <stdlib.h>
-#include "ofxAudioUnit.h"
+//#include "ofxAudioUnit.h"
 #include "OscData.h"
 #define NUM_SENSORS_TREE 2
 class Tree{
@@ -30,7 +30,8 @@ public:
     void keyReleased(ofKeyEventArgs &key);
     void update();
     void draw();
-    OscData *oscData; 
+    OscData *oscData;
+//ofxAudioUnit unit;
  
 };
 

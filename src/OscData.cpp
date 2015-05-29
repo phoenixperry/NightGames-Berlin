@@ -8,44 +8,57 @@
 
 #include "OscData.h"
 #include "ofxOsc.h"
+float num1, num2, num3, num4;
+
 int num=0;
 OscData::OscData(){
-    sender.setup("192.168.0.102", 12000);
+    sender.setup("127.0.0.1", 6448);
     
-    receiver.setup(8001);
+    receiver.setup(12000);
 
 }
 
 void OscData::setup(){
     
 }
+void OscData::update()
+{
+
+    while (receiver.hasWaitingMessages()) {
+        
+        //get the next message
+        ofxOscMessage m;
+        receiver.getNextMessage(&m);
+        //parse the message
+        if(m.getAddress() == "/wek/outputs")
+        {
+            num1 = m.getArgAsFloat(0);
+            num2 = m.getArgAsFloat(1);
+            num3 = m.getArgAsFloat(2);
+            num4 = m.getArgsAsFloat(3);
+            cout<< num1;
+            
+        }
+    }
+}
 void OscData::sendData(vector<int> &data, string interaction){
     num=0;
     vector<int>::const_iterator it;
+    ofxOscMessage m;
+    m.setAddress("/wek/inputs");
     for (it = data.begin(); it != data.end(); it++)
     {
-        cout << *it << " ";
-        ofxOscMessage m;
-        m.setAddress(interaction+ "/" + ofToString(+num));
-        m.addIntArg(*it);
+        //cout << *it << " ";
+        //float mapped = ofMap((float)*it, 250.0f, 834.0f, 0.0f, 1.0f);
+        //mapped =ofClamp(mapped, 0.0f, 1.0f);
+        //cout << mapped << "i am output from "<< num<<endl;
+        //m.setAddress(interaction+ "/" + ofToString(+num));
+        cout<< (float)*it <<endl;
+        m.addFloatArg((float)*it);
         num++;
-        sender.sendMessage(m);
-        cout << "sent to osc " << *it << " at position"<< num<< endl;
-
+    }
+    sender.sendMessage(m);
     }
 
-//    ofxOscMessage m;
-//    m.setAddress(interaction+ "/" + ofToString(+num));
-//    m.addIntArg(num);
-//    num++;
-//    sender.sendMessage(m);
-//    vector<int>::const_iterator it;
-//    it = data.begin();
-//    while(it !=data.end())
-//    {
-//        ofxOscMessage m;
-//        m.addIntArg(*it);
-//        m.setAddress(interaction);
-//        sender.sendMessage(m);
-//    }
-    }
+void
+

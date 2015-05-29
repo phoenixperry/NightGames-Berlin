@@ -9,7 +9,7 @@
 #include "Stars.h"
 #include "Rock.h"
 #include "OscData.h"
-
+#include "Flowers.h"
 using namespace std;
 
 class ofApp : public ofBaseApp{
@@ -32,4 +32,5 @@ class ofApp : public ofBaseApp{
     Tree *tree;
     SerialReader *serial_reader;
     OscData *oscData;
+    Flowers *flowers;
 };

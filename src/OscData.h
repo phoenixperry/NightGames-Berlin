@@ -16,7 +16,7 @@ class OscData{
 public:
     OscData();
     void setup();
-
+    void update(); 
     ofxOscSender sender;
     void sendData(vector<int>&data,string interaction);
     

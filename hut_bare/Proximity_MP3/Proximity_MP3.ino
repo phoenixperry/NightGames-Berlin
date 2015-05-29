@@ -13,7 +13,12 @@
 //We can use any of these!!! 
 //int leds[] = {0,1,5,6,7,8,9,10,11,12,13,A0,A1,A2,A3,A4,A5}; // these are the pads you can use for digital output  
 int leds[] = {5,0,6,0,7,0,0,0}; 
+int sensor1 = A5;
+int sensor2 = A2;
+int sensor3 = A3; 
+int sensor4 = A4; 
 
+int sensorData1, sensorData2, sensorData3, sensorData4 =0; 
 void setup(){  
   Serial.begin(57600);
   
@@ -24,6 +29,11 @@ void setup(){
   pinMode(6, OUTPUT);  // channel E
   pinMode(7, OUTPUT);  // channel F
   
+  pinMode(sensor1, INPUT);
+  pinMode(sensor2, INPUT);
+  pinMode(sensor3, INPUT);
+  pinMode(sensor4, INPUT);
+
   if(!MPR121.begin(MPR121_ADDR)) Serial.println("error setting up MPR121");
   MPR121.setInterruptPin(MPR121_INT);
  
@@ -38,14 +48,35 @@ void setup(){
 }
 void loop(){
   writeSerialData(); 
+  sensorData1 = analogRead(sensor1);
+  sensorData2 = analogRead(sensor2);
+  sensorData3 = analogRead(sensor3);
+  sensorData4 = analogRead(sensor4);
+  Serial.print(12); 
+  Serial.print(":");
+  Serial.println(sensorData1);
+
+  Serial.print(13); 
+  Serial.print(":");
+  Serial.println(sensorData2);
+
+  Serial.print(14); 
+  Serial.print(":");
+  Serial.println(sensorData3);
+
+  Serial.print(15); 
+  Serial.print(":");
+  Serial.println(sensorData4);
 }
 
 void writeSerialData()
 {
-    MPR121.updateTouchData();
+ 
+   MPR121.updateTouchData();
     for(int i=0; i<12; i++){
+  
     MPR121.updateFilteredData(); 
-    int d = MPR121.getFilteredData(0);
+    int d = MPR121.getFilteredData(i);
       if(i < 10){
         Serial.print(0);
       }
@@ -53,7 +84,7 @@ void writeSerialData()
         Serial.print(":");
         Serial.println(d);
         Serial.flush();  
-      //Serial.println(d); 
+      // chrome
 
     if(d < 700){
       digitalWrite(leds[i], HIGH);
@@ -61,6 +92,5 @@ void writeSerialData()
     else {
       digitalWrite(leds[i], LOW);
     }
-
   }
 }
