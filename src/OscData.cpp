@@ -30,15 +30,15 @@ void OscData::update()
         ofxOscMessage m;
         receiver.getNextMessage(&m);
         //parse the message
-        if(m.getAddress() == "/wek/outputs")
-        {
+       // if(m.getAddress() == "/wek/outputs")
+    //    {
             num1 = m.getArgAsFloat(0);
-            num2 = m.getArgAsFloat(1);
-            num3 = m.getArgAsFloat(2);
-            num4 = m.getArgsAsFloat(3);
-            cout<< num1;
-            
-        }
+//            num2 = m.getArgAsFloat(1);
+//            num3 = m.getArgAsFloat(2);
+//            num4 = m.getArgAsFloat(3);
+        cout<< num1 <<" I am from wek"<<endl;
+        
+      //  }
     }
 }
 void OscData::sendData(vector<int> &data, string interaction){
@@ -53,12 +53,14 @@ void OscData::sendData(vector<int> &data, string interaction){
         //mapped =ofClamp(mapped, 0.0f, 1.0f);
         //cout << mapped << "i am output from "<< num<<endl;
         //m.setAddress(interaction+ "/" + ofToString(+num));
-        cout<< (float)*it <<endl;
+        cout<< (float)*it << "is what wekinator gets" << endl;
         m.addFloatArg((float)*it);
         num++;
+        cout << num << " ran"<<endl;
     }
+
     sender.sendMessage(m);
     }
 
-void
+
 

@@ -14,7 +14,7 @@
 #include <iostream>
 #pragma once
 #define NUM_BYTES 2
-#define NUM_PADS 12
+#define NUM_PADS 14
 using namespace std;
 class SerialReader{
 public:
@@ -28,6 +28,6 @@ public:
     
     
 //    int pads[NUM_PADS] = {0,1,2,3,4,5,6,7,8,9,10} ;
-    int pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9, pad10, pad11, pad0=0;
+    int pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9, pad10, pad11,pad12, pad13, pad14, pad0=0;
 };
 #endif /* defined(__http_example__SerialReader__) */

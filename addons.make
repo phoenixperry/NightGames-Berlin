@@ -3,3 +3,4 @@ ofxAudioUnit
 ofxHttpUtils
 ofxJSON
 ofxMaxim
+ofxTonic

@@ -14,7 +14,7 @@ void SerialReader::setup(){
 
     serial = new ofSerial();
     serial->listDevices();
-    serial->setup(0, 9600);
+    serial->setup(0, 57600);
 }
 void SerialReader::update(){
 
@@ -37,7 +37,7 @@ void SerialReader::update(){
             string pad = serialData.substr(0,2);
             string data = serialData.substr(3,5);
             int num = ofToInt(data);
-            cout << pad << " raw " << data << endl;
+          //  cout << pad << " raw " << data << endl;
     
       
 //            if(pd == "00"){pad[0]=num;}
@@ -64,7 +64,10 @@ void SerialReader::update(){
             else if(pad=="08"){ pad8 = num;}
             else if(pad=="09"){ pad9 = num;}
             else if(pad=="10"){ pad10 = num;}
-            else{pad11 = num;}
+            else if(pad=="11"){ pad11 = num;}
+            else if(pad=="12"){ pad12 = num;}
+            else if(pad=="13"){ pad13 = num;}
+            else{pad14 = num;}
             
         }else{ cout << "failed to get serial data" << endl;}
         
