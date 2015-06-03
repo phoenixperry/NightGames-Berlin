@@ -1,26 +1,18 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Spark_core_manager.h"
-#include "Clouds.h"
 #include "SerialReader.h"
 #include <vector>
-#include "Hut.h"
-#include "Stars.h"
-#include "Rock.h"
 #include "OscData.h"
 #include "Flowers.h"
+#include "Tree.h"
 using namespace std;
 
 class ofApp : public ofBaseApp{
 private:
     
-    int scaleDegree;
-    void trigger();
-    void setScaleDegreeBasedOnMouseX();
-
 public:
-    ofxTonicSynth synth;
+ 
     
     void setup();
     void update();
@@ -35,16 +27,10 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-    void audioRequested (float * output, int bufferSize, int nChannels);
+    
     
     SerialReader *serial_reader;
-    OscData *oscData;
- 
-    float lightLevel;
-    vector<float> ardVals;
-    ofSoundPlayer player;
+    Tree *tree;
     
-    void setupSound();
-    int average; 
 
 };

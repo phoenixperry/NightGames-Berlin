@@ -24,27 +24,12 @@ private:
     void trigger();
     void setScaleDegreeBasedOnMouseX();
 public:
-    Flowers(SerialReader *serial_, OscData *oscData_, ofBaseApp *app);
+    Flowers(SerialReader *serial_);
     void update();
     
     SerialReader *serial;
     OscData *oscData;
-    void audioRequested(float *output, int buffersize, int nChannels);
-    
-    float lightLevel;
-    vector<float>ardVals;
-    
-    ofSoundPlayer note1;
-    ofSoundPlayer note2;
-    ofSoundPlayer note3;
-    ofSoundPlayer note4;
-    
-    ofSoundPlayer player; 
-    
-    void audioOut(float * input, int bufferSize, int nChannels);
-   	
-    ofSoundStream soundStream;
-    void audioRequested();
+
 
 };
  

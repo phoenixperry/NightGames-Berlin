@@ -14,13 +14,14 @@
 
 class OscData{
 public:
-    OscData();
-    void setup();
-    void update(); 
+    OscData(int port_number);
+
+    vector<float>* getData(string inputString);
     ofxOscSender sender;
-    void sendData(vector<int>&data,string interaction);
+
+    void sendData(vector<float>&data,string outputString);
     
     ofxOscReceiver receiver;
-
+    vector<float>* nums;
 };
 #endif /* defined(__http_example__OscData__) */

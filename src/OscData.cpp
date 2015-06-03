@@ -8,44 +8,41 @@
 
 #include "OscData.h"
 #include "ofxOsc.h"
-float num1, num2, num3, num4;
+#include "vector.h"
 
-int num=0;
-OscData::OscData(){
-    sender.setup("127.0.0.1", 6448);
-    
+
+OscData::OscData(int port_number){
+    sender.setup("127.0.0.1", port_number);
     receiver.setup(12000);
-
+    nums = new vector<float>(1);
 }
 
-void OscData::setup(){
-    
-}
-void OscData::update()
+vector<float>* OscData::getData(string inputString)
 {
-
+    nums->clear();
     while (receiver.hasWaitingMessages()) {
-        
+
         //get the next message
         ofxOscMessage m;
         receiver.getNextMessage(&m);
+        nums->resize(m.getNumArgs());
         //parse the message
-       // if(m.getAddress() == "/wek/outputs")
-    //    {
-            num1 = m.getArgAsFloat(0);
-//            num2 = m.getArgAsFloat(1);
-//            num3 = m.getArgAsFloat(2);
-//            num4 = m.getArgAsFloat(3);
-        cout<< num1 <<" I am from wek"<<endl;
-        
-      //  }
+        if(m.getAddress() == inputString)
+        {
+            for(int i =0; i < m.getNumArgs(); i++)
+            {
+                nums->at(i) = m.getArgAsFloat(0);
+            }
+        }
     }
+        return nums;
 }
-void OscData::sendData(vector<int> &data, string interaction){
-    num=0;
-    vector<int>::const_iterator it;
+ 
+void OscData::sendData(vector<float> &data, string outputString){
+    int num =0;
+    vector<float>::const_iterator it;
     ofxOscMessage m;
-    m.setAddress("/wek/inputs");
+    m.setAddress(outputString);
     for (it = data.begin(); it != data.end(); it++)
     {
         //cout << *it << " ";
@@ -53,14 +50,13 @@ void OscData::sendData(vector<int> &data, string interaction){
         //mapped =ofClamp(mapped, 0.0f, 1.0f);
         //cout << mapped << "i am output from "<< num<<endl;
         //m.setAddress(interaction+ "/" + ofToString(+num));
-        cout<< (float)*it << "is what wekinator gets" << endl;
-        m.addFloatArg((float)*it);
         num++;
-        cout << num << " ran"<<endl;
+        cout<< *it << "is what wekinator gets "<< num << endl;
+        m.addFloatArg(*it);
+        
     }
-
+    
     sender.sendMessage(m);
-    }
-
+}
 
 

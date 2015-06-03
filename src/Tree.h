@@ -17,22 +17,26 @@
 #include <stdlib.h>
 //#include "ofxAudioUnit.h"
 #include "OscData.h"
-#define NUM_SENSORS_TREE 2
+
 class Tree{
 public:
-    vector<int> padsLow;
-    vector<int>padsHigh;
-    vector<int> pads;
+
+    vector<float> pads;
     bool calibrating = false;
-    Tree(SerialReader *serial_reader_, OscData *oscData_);
+    Tree(SerialReader *serial_reader_);
     ~Tree();
     SerialReader *serial_reader;
     void keyReleased(ofKeyEventArgs &key);
     void update();
     void draw();
-    OscData *oscData;
-//ofxAudioUnit unit;
- 
+    OscData* oscData;
+    int numSensors = 3;
+    void setHealth();
+
+    float health;
+    vector<float>* nums;
+    void sendHealth();
+    void sendToWekinator(vector<float>& pads);
 };
 
 
