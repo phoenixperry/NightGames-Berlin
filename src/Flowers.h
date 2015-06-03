@@ -26,11 +26,13 @@ private:
 public:
     Flowers(SerialReader *serial_);
     void update();
-    
+    float &padsAverage;
     SerialReader *serial;
     OscData *oscData;
-
-
+    float average;
+    float& getFood();
+    void sendToWekinator(float &padsAverage_, string inputToWekinator);
+    vector<float> *pads;
 };
  
 #endif /* defined(__http_example__Flowers__) */

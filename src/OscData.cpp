@@ -31,13 +31,22 @@ vector<float>* OscData::getData(string inputString)
         {
             for(int i =0; i < m.getNumArgs(); i++)
             {
-                nums->at(i) = m.getArgAsFloat(0);
+                nums->at(i) = m.getArgAsFloat(i);
+                cout << m.getArgAsFloat(i) << "raw from flower" << endl;
             }
         }
     }
         return nums;
 }
- 
+void OscData::sendData(float &num, string outputString)
+{
+    ofxOscMessage m;
+    m.setAddress(outputString);
+    m.addFloatArg(num);
+    sender.sendMessage(m);
+    
+}
+
 void OscData::sendData(vector<float> &data, string outputString){
     int num =0;
     vector<float>::const_iterator it;

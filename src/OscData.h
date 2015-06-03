@@ -20,7 +20,7 @@ public:
     ofxOscSender sender;
 
     void sendData(vector<float>&data,string outputString);
-    
+    void sendData(float &num, string outputString);
     ofxOscReceiver receiver;
     vector<float>* nums;
 };

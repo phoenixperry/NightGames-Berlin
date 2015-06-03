@@ -40,7 +40,7 @@ void Tree::update(){
 }
 
 void Tree::sendToWekinator(vector<float>& pads){
-    oscData->sendData(pads, "/tree/pads");
+    oscData->sendData(pads, "/tree/input");
 }
 void Tree::setHealth(){
     float total =0.0f;

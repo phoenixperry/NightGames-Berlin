@@ -22,11 +22,11 @@ class Tree{
 public:
 
     vector<float> pads;
-    bool calibrating = false;
+
     Tree(SerialReader *serial_reader_);
     ~Tree();
     SerialReader *serial_reader;
-    void keyReleased(ofKeyEventArgs &key);
+
     void update();
     void draw();
     OscData* oscData;

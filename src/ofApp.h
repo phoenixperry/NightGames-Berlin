@@ -31,6 +31,7 @@ public:
     
     SerialReader *serial_reader;
     Tree *tree;
+    Flowers *flower;
     
 
 };
