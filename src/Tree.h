@@ -21,7 +21,7 @@
 class Tree{
 public:
 
-    vector<float> pads;
+    vector<float>pads;
 
     Tree(SerialReader *serial_reader_);
     ~Tree();
@@ -30,13 +30,17 @@ public:
     void update();
     void draw();
     OscData* oscData;
-    int numSensors = 3;
+    OscData* filteredOsc;
+    
+    int numSensors = 2;
+    
     void setHealth();
 
-    float health;
+    float health =0.0f;
     vector<float>* nums;
     void sendHealth();
-    void sendToWekinator(vector<float>& pads);
+    void sendToWekinator(vector<float>& pads, string inputToWekinator);
+    vector<float> * padsFiltered;
 };
 
 

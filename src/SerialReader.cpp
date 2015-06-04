@@ -37,7 +37,7 @@ void SerialReader::update(){
             string pad = serialData.substr(0,2);
             string data = serialData.substr(3,5);
             int num = ofToInt(data);
-          //  cout << pad << " raw " << data << endl;
+            //cout << pad << " raw " << data << endl;
     
       
 //            if(pd == "00"){pad[0]=num;}

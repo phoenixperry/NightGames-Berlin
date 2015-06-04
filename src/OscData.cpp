@@ -11,9 +11,11 @@
 #include "vector.h"
 
 
-OscData::OscData(int port_number){
+OscData::OscData(int port_number, int incoming_port_){
+    
     sender.setup("127.0.0.1", port_number);
-    receiver.setup(12000);
+    
+    receiver.setup(incoming_port_);
     nums = new vector<float>(1);
 }
 
@@ -67,5 +69,28 @@ void OscData::sendData(vector<float> &data, string outputString){
     
     sender.sendMessage(m);
 }
+
+
+
+//void OscData::sendData(vector<float> *data, string outputString){
+//    int num =0;
+//    vector<float>::const_iterator it;
+//    ofxOscMessage m;
+//    m.setAddress(outputString);
+//    for (it = data->begin(); it != data->end(); it++)
+//    {
+//        //cout << *it << " ";
+//        //float mapped = ofMap((float)*it, 250.0f, 834.0f, 0.0f, 1.0f);
+//        //mapped =ofClamp(mapped, 0.0f, 1.0f);
+//        //cout << mapped << "i am output from "<< num<<endl;
+//        //m.setAddress(interaction+ "/" + ofToString(+num));
+//        num++;
+//        cout<< *it << "is what wekinator gets "<< num << endl;
+//        m.addFloatArg(*it);
+//        
+//    }
+//    
+//    sender.sendMessage(m);
+//}
 
 

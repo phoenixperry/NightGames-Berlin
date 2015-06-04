@@ -10,10 +10,11 @@
 #define NUMBER_OF_KEYS 10
 
 Flowers::Flowers(SerialReader *serial_):padsAverage(average){
+
     serial = serial_;
     average = 0;
     padsAverage = average;
-    oscData = new OscData(6447);
+    oscData = new OscData(9000, 9001);
     pads = new vector<float>;
 
 }
@@ -40,8 +41,7 @@ float& Flowers::getFood(){
 
 void Flowers::sendToWekinator(float &padsAverage_, string inputToWekinator) {
     oscData->sendData(padsAverage_, inputToWekinator);
-    cout << average << " flower data to wekinator" << endl;
-
+    //cout << average << " flower data to wekinator" << endl;
     
 }
 

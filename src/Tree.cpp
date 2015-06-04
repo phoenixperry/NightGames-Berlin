@@ -14,55 +14,53 @@
 //
 #include <vector.h>
 #include "SerialReader.h"
+
 Tree::Tree(SerialReader *serial_reader_){
     
-    oscData = new OscData(6448);
-    pads = vector<float>(numSensors);
-   
+    oscData = new OscData(6448, 12000);
+    filteredOsc = new OscData(8000, 8001);
+
+    
+    pads =  vector<float>(numSensors);
     serial_reader = serial_reader_;
+    
+    padsFiltered = new vector<float>();
 }
-//Tree::Tree(SerialReader *serial_reader_){
-//
-//}
 
 void Tree::update(){
     //yea old serial data
-    serial_reader->update();
     //touch sensor data
     pads.at(0)= serial_reader->pad0;
     pads.at(1) = serial_reader->pad3;
-    pads.at(2) = serial_reader->pad5;
-    //this might be questionable to pass as a reference
-    vector<float>& pads_ = pads;
-    sendToWekinator(pads_);
-    //learned data from wekinator outputed back to OF
-    //nums = oscData->getData("/tree/input");
-}
-
-void Tree::sendToWekinator(vector<float>& pads){
-    oscData->sendData(pads, "/tree/input");
-}
-void Tree::setHealth(){
-    float total =0.0f;
-    //this is for when I get flower two built
-    for(int i=0; i< nums->size(); i++)
+    cout << pads.size() << " num pads" << endl;
+    cout << pads.at(0) << " pad 0 "<<endl;
+    cout << pads.at(1) << " pads 1" << endl;
+    
+    sendToWekinator(pads, "/tree/input");
+    
+    //get data back from wekinator
+    padsFiltered = oscData->getData("/tree/output");
+    
+    //effect data with health
+    vector<float>::iterator it;
+    int num = 0;
+    for (it = padsFiltered->begin(); it != padsFiltered->end(); it++)
     {
-        total = total+nums->at(i);
+        *it = health+*it/2; //average two nums
     }
     
-    health = total/nums->size();
+    //send data to osculator
+    vector<float> &pads_ = pads;
+    filteredOsc->sendData(pads_, "/tree/filtered");
+    
 }
 
-void Tree::sendHealth(){
-    //this is cheap I just happen to know there's one sensor here. when flower two is made this needs to be fixed.
-    vector<float>health_ = vector<float>(1);
-    health_.at(0) = health;
-    //this will make sound from wekinator to ableton if all goes well
-    
-    //send the data back out to wekinator after averaging it
-    //for now this isn't needed so much.
-    oscData->sendData(health_, "/tree/output");
+
+void Tree::sendToWekinator(vector<float> &pads_, string inputToWekinator){
+ 
+    oscData->sendData(pads, inputToWekinator);
 }
+
 
 Tree::~Tree()
 {
