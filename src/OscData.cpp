@@ -34,7 +34,7 @@ vector<float>* OscData::getData(string inputString)
             for(int i =0; i < m.getNumArgs(); i++)
             {
                 nums->at(i) = m.getArgAsFloat(i);
-                cout << m.getArgAsFloat(i) << "raw from flower" << endl;
+                //cout << m.getArgAsFloat(i) << "raw from flower" << endl;
             }
         }
     }
@@ -62,7 +62,7 @@ void OscData::sendData(vector<float> &data, string outputString){
         //cout << mapped << "i am output from "<< num<<endl;
         //m.setAddress(interaction+ "/" + ofToString(+num));
         num++;
-        cout<< *it << "is what wekinator gets "<< num << endl;
+        //cout<< *it << "is what wekinator gets "<< num << endl;
         m.addFloatArg(*it);
         
     }

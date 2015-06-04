@@ -7,16 +7,16 @@ void ofApp::setup(){
     serial_reader = new SerialReader();
     serial_reader->setup();
     tree = new Tree(serial_reader);
-    
+//    
     flower = new Flowers(serial_reader);
 }
 //--------------------------------------------------------------
 void ofApp::update(){
-    serial_reader->update();
+      serial_reader->update();
     tree->health = flower->getFood();
-    tree->update();
+      tree->update();
     flower->update();
-    
+//    
 }
 
 //--------------------------------------------------------------

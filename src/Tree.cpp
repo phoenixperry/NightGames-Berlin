@@ -32,14 +32,14 @@ void Tree::update(){
     //touch sensor data
     pads.at(0)= serial_reader->pad0;
     pads.at(1) = serial_reader->pad3;
-    cout << pads.size() << " num pads" << endl;
-    cout << pads.at(0) << " pad 0 "<<endl;
-    cout << pads.at(1) << " pads 1" << endl;
-    
-    sendToWekinator(pads, "/tree/input");
+//    cout << pads.size() << " num pads" << endl;
+//    cout << pads.at(0) << " pad 0 "<<endl;
+//    cout << pads.at(1) << " pads 1" << endl;
+//    
+    sendToWekinator(pads, "/tree/inputs");
     
     //get data back from wekinator
-    padsFiltered = oscData->getData("/tree/output");
+    padsFiltered = oscData->getData("/tree/outputs");
     
     //effect data with health
     vector<float>::iterator it;

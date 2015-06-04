@@ -14,24 +14,26 @@ Flowers::Flowers(SerialReader *serial_):padsAverage(average){
     serial = serial_;
     average = 0;
     padsAverage = average;
-    oscData = new OscData(9000, 9001);
+    oscData = new OscData(9000, 8001);
     pads = new vector<float>;
 
 }
 void Flowers::update(){
     average= serial->pad12;
-    sendToWekinator(average, "/flowers/input");
-    pads = oscData->getData("/flowers/output");
+    sendToWekinator(average, "/flowers/inputs");
+    pads = oscData->getData("/flowers/outputs");
     
     vector<float>::const_iterator it;
     int num = 0;
+    padsAverage =0;
     for (it = pads->begin(); it != pads->end(); it++)
     {
-        padsAverage = average+*it;
+        padsAverage = padsAverage+*it;
         num++;
+       
     }
     padsAverage = padsAverage/num;
-    cout << padsAverage << " flower data from wekinator" << endl;
+   // cout << padsAverage << " flower data from wekinator" << endl;
 }
 
 float& Flowers::getFood(){
